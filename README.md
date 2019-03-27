@@ -40,7 +40,7 @@ type, the variables will smoothly transition to their new point on the graph.
 * [Radar Chart](https://www.visualcinnamon.com/2013/09/making-d3-radar-chart-look-bit-better.html)
 * [Pie Chart](https://observablehq.com/@d3/pie-chart)
 
-## Sketch-up of Envisioned Visualization
+## Sketch-Up Of Envisioned Visualization
 ![Scatter Plot Matrix](https://i.imgur.com/1RdvWRI.png)
 ![Radar Chart](https://imgur.com/1KkQvSZ.png)
 ![Pie Chart](https://imgur.com/VhNjhgY.png)
