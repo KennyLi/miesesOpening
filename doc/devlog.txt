@@ -5,7 +5,7 @@ Jason Tung
 Raymond Wu
 pd 7
 ---------------------
-<Project Title/Description>
+Visualization of Pokemon Data
 
 
  ______   ______   __   __   __       ______   _______     
@@ -19,7 +19,11 @@ pd 7
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
-fristL -- TIMESTAMP
+kennyL -- 00:33
 --------------------------------------------------------------
-<Thing fristL did.>
+Updated README with rough outline of project.
+1. Description Of Data Sets
+2. How To Make This Data Come Alive
+3. Explanation Of D3 Feature Utilization
+4. Sketch-Up Of Envisioned Visualization
 ==============================================================
