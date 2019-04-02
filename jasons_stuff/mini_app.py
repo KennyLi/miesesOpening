@@ -1,5 +1,5 @@
-import jasons_stuff.util_stuff.json_setup as stp
-import jasons_stuff.util_stuff.find as fnd
+import util_stuff.json_setup as stp
+import util_stuff.find as fnd
 
 import pymongo
 
