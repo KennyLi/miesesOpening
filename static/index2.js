@@ -3,7 +3,7 @@ var data = [{"letter":"fire","presses":33},
             {"letter":"water","presses":15},
             {"letter":"electric","presses":15},
             {"letter":"ground", "presses":15},
-            ];
+           ];
 console.log(data);
 
 var width = 600,
