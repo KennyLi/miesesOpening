@@ -6,8 +6,8 @@ var data = [{"letter":"fire","presses":33},
             ];
 console.log(data);
 
-var width = 300,
-	height = 300,
+var width = 600,
+	height = 600,
 	radius = Math.min(width, height) / 2;
 
 
@@ -24,7 +24,7 @@ var arc = d3.arc()
 
 var labelArc = d3.arc()
 	.outerRadius(radius - 40)
-	.innerRadius(radius - 40);
+	.innerRadius(radius - 175);
 
 var svg = d3.select("#pie")
 	.append("svg")
@@ -46,5 +46,6 @@ g.append("text")
 	.attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
 	.text(function(d) { return d.data.letter;})
 	.style("fill", "#fff")
-    .style("text-anchor", "middle");
+    .style("text-anchor", "middle")
+    .style("font-size", "25px");
 
