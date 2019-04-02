@@ -44,3 +44,15 @@ type, the variables will smoothly transition to their new point on the graph.
 ![Scatter Plot Matrix](https://i.imgur.com/1RdvWRI.png)
 ![Radar Chart](https://imgur.com/1KkQvSZ.png)
 ![Pie Chart](https://imgur.com/VhNjhgY.png)
+
+## LAUNCH CODES
+Our dependencies, as listed in requirements.txt, are as follows:
+
+| Dependency | Version | Origin | Description | 
+| --- | --- | --- | --- |
+| Click | 7.0 | Flask | unused |
+| Flask | 1.0.2 | Flask | microframework of choice |
+| itsdangerous | 1.1.0 | Flask | unused |
+| Jinja2 | 2.10 | Flask | templating language |
+| MarkupSafe | 1.1.1 | Flask | unused |
+| Werkzeug | 0.15.1 | Flask | unused |
