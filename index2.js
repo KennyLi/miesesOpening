@@ -1,4 +1,9 @@
-var data = [{"letter":"q","presses":1},{"letter":"w","presses":5},{"letter":"e","presses":2}];
+var data = [{"letter":"fire","presses":33},
+            {"letter":"grass","presses":33},
+            {"letter":"water","presses":15},
+            {"letter":"electric","presses":15},
+            {"letter":"ground", "presses":15},
+            ];
 console.log(data);
 
 var width = 300,
@@ -7,7 +12,7 @@ var width = 300,
 
 
 var color = d3.scaleOrdinal()
-	.range(["#2C93E8","#838690","#F56C4E"]);
+	.range(["#ff0000","#00ff00","#0000ff","yellow","#0f0f0f"]);
 
 
 var pie = d3.pie()
