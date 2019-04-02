@@ -30,5 +30,5 @@ Updated README with rough outline of project.
 
 kennyL -- 2019-04-1 21:40
 --------------------------------------------------------------
-Updated README with install/launch innstructions
+Updated README with install/launch instructions
 ==============================================================
