@@ -27,11 +27,8 @@ import pymongo
 
 
 def find_pokemans(db, kwargs):
-    # server_addr = addr
-    # connection = pymongo.MongoClient(server_addr)
-    # db = connection.test
-    connection = db.azrael
-    # POSSIBLE ARGS: num, name, type, height, height_updown, weight, weight_updown, weaknesses, evolutions
+    connection = db.miesesgang
+    # POSSIBLE ARGS: id, name, type["t1"],
     find_query = {}
     args = {"num": None, "name": None, "type": None, "height": None,
             "weight": None, "weaknesses": None, "evolutions": None}

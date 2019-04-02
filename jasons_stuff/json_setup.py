@@ -1,11 +1,6 @@
-# azrael -- Jason Tung and Mohammed Uddin
-#
-# SoftDev2 pd7
-#
-# K #07: Import/Export Bank
-#
-# 2019-03-01
 import json
+
+import os
 
 import pymongo
 
@@ -17,24 +12,43 @@ def load_bypass(thing):
     return json.loads(webpage)
 
 def parsefile():
-    '''
     with open('pokedex.json') as f:
-        data = json.load(f)
-    pk_col = data["pokemon
-    '''
+        pkgo_data = json.load(f)
+    pkgo_data = pkgo_data["pokemon"]
     with open('pokedex_extra.json') as f:
         data = json.load(f)
     load_str = "https://pokeapi.co/api/v2/pokemon/"
     #test = 0
-    for pkmon in data:
-        recieved_info = load_bypass(load_str+str(pkmon["id"]))
+    stats = ["HP", "Attack", "Defense", "Sp. Attack", "Sp. Defense", "Speed"]
+    for x in range(10):
+        pkmon = data[x]
+    # for pkmon in data[:-2]:
+        received_info = load_bypass(load_str+str(pkmon["id"]))
         #print("FDSFSDFDSFJKSDHFJKSDHFJKSKF\n\n\n\n")
-        #print(recieved_info)
+        #print(received_info)
         #test+=1
-        height = recieved_info["height"]
-        weight = recieved_info["weight"]
+        #print(received_info["abilities"])
+        for stat in stats:
+            pkmon[stat] = pkmon["base"][stat]
+        del pkmon["base"]
+        pkmon["name"] = pkmon["name"]["english"]
+        abilities = [k["ability"]["name"] for k in received_info["abilities"]]
+        pkmon["abilities"] = abilities
+        sprite = received_info["sprites"]["front_default"]
+        pkmon["sprite"] = sprite
+        height = "%.1f" % (received_info["height"] * .1)
+        weight = "%.1f" % (received_info["weight"] * .1)
         pkmon["height"] = height
         pkmon["weight"] = weight
+        print(pkmon["id"])
+    pk_str = "[\n"
+    for pkmon in data[:-2]:
+        pk_str += json.dumps(pkmon)
+        pk_str += ",\n"
+    pk_str = pk_str[:-2] + "\n]"
+    with open("pokedex_parsed.json", "r+") as f:
+        f.truncate()
+        f.write(pk_str)
     
         
 parsefile()
@@ -44,28 +58,17 @@ def setup(db):
     # server_addr = ip
     # connection = pymongo.MongoClient(server_addr)
     # db = connection.test
-    connection = db.pokedex_unparsed
-    parsefile()
-    '''
-    id = 1
-    pkmon_list = data["pokemon"]
-    print(pkmon_list)
-    with open("pokedex_parsed.json", "w") as f:
-        f.write("[")
-        for pkmon in pkmon_list:
-            f.write(json.dumps(pkmon))
-            if id < 151:
-                f.write(",\n")
-            id+=1
-        f.write("]")
-    '''
-    collection = db.azrael
-    collection.drop()
-    f=open("pokedex_parsed.json","r")
-    json_data = f.read()
-    f.close()
-    data = json.loads(json_data)
+    # connection = db.pokedex_unparsed
+    #this only needs be run once!
+    if not os.path.isfile("pokedex_parsed.json"):
+        parsefile()
+    else:
+        collection = db.miesesgang
+        collection.drop()
+        f=open("pokedex_parsed.json","r")
+        json_data = f.read()
+        f.close()
+        data = json.loads(json_data)
+        collection.insert_many(data)
 
-    collection.insert_many(data)
-
-# setup("jayy.mooo.com")
+#setup("jayy.mooo.com")
