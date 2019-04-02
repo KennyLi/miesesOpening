@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0b4fa72-23dc-482a-a177-b8765b1ded35" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/jasons_stuff/find.py" beforeDir="false" afterPath="$PROJECT_DIR$/jasons_stuff/find.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jasons_stuff/json_setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/jasons_stuff/json_setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jasons_stuff/pokedex_parsed.json" beforeDir="false" afterPath="$PROJECT_DIR$/jasons_stuff/pokedex_parsed.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jasons_stuff/mini_app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jasons_stuff/util_stuff/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jasons_stuff/find.py" beforeDir="false" afterPath="$PROJECT_DIR$/jasons_stuff/util_stuff/find.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jasons_stuff/json_setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/jasons_stuff/util_stuff/json_setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jasons_stuff/pokedex.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jasons_stuff/pokedex_extra.json" beforeDir="false" afterPath="$PROJECT_DIR$/jasons_stuff/data_stuff/pokedex_extra.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jasons_stuff/pokedex_parsed.json" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,13 +18,16 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/miesesOpening$mini_app.coverage" NAME="mini_app Coverage Results" MODIFIED="1554246717182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/jasons_stuff" />
+  </component>
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="json_setup.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jasons_stuff/json_setup.py">
+        <entry file="file://$PROJECT_DIR$/jasons_stuff/util_stuff/json_setup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+            <state relative-caret-position="325">
+              <caret line="26" column="18" lean-forward="true" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
               <folding>
                 <element signature="e#104#115#0" expanded="true" />
               </folding>
@@ -27,23 +35,42 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="find.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/jasons_stuff/find.py">
+      <file leaf-file-name="mini_app.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/jasons_stuff/mini_app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="311">
-              <caret line="40" column="25" lean-forward="true" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
+            <state relative-caret-position="210">
+              <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="find.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jasons_stuff/util_stuff/find.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-47">
+              <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="pokedex_extra.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jasons_stuff/pokedex_extra.json">
+        <entry file="file://$PROJECT_DIR$/jasons_stuff/data_stuff/pokedex_extra.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-235928" />
+            <state relative-caret-position="-235910" />
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -60,8 +87,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/jasons_stuff/pokedex_parsed.json" />
-        <option value="$PROJECT_DIR$/jasons_stuff/json_setup.py" />
         <option value="$PROJECT_DIR$/jasons_stuff/find.py" />
+        <option value="$PROJECT_DIR$/jasons_stuff/json_setup.py" />
+        <option value="$PROJECT_DIR$/jasons_stuff/util_stuff/json_setup.py" />
+        <option value="$PROJECT_DIR$/jasons_stuff/util_stuff/find.py" />
+        <option value="$PROJECT_DIR$/jasons_stuff/mini_app.py" />
       </list>
     </option>
   </component>
@@ -97,6 +127,18 @@
               <item name="miesesOpening" type="462c0819:PsiDirectoryNode" />
               <item name="jasons_stuff" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="miesesOpening" type="b2602c69:ProjectViewProjectNode" />
+              <item name="miesesOpening" type="462c0819:PsiDirectoryNode" />
+              <item name="jasons_stuff" type="462c0819:PsiDirectoryNode" />
+              <item name="data_stuff" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="miesesOpening" type="b2602c69:ProjectViewProjectNode" />
+              <item name="miesesOpening" type="462c0819:PsiDirectoryNode" />
+              <item name="jasons_stuff" type="462c0819:PsiDirectoryNode" />
+              <item name="util_stuff" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -110,6 +152,15 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/jasons_stuff/data_stuff" />
+      <recent name="$PROJECT_DIR$/jasons_stuff/util_stuff" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/jasons_stuff/util_stuff" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -122,7 +173,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.mini_app">
+    <configuration name="mini_app" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="miesesOpening" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/jasons_stuff" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/jasons_stuff/mini_app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="miesesOpening" type="Python.FlaskServer" factoryName="Flask server">
       <module name="miesesOpening" />
       <option name="target" value="$PROJECT_DIR$/app.py" />
@@ -130,13 +200,22 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="launchJavascriptDebuger" value="false" />
     </configuration>
+    <list>
+      <item itemvalue="Flask server.miesesOpening" />
+      <item itemvalue="Python.mini_app" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.mini_app" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -158,11 +237,11 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3298611" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24969475" />
+      <window_info anchor="bottom" id="Terminal" weight="0.3298611" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24969475" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="SciView" />
@@ -188,32 +267,45 @@
     <entry file="file://$PROJECT_DIR$/jasons_stuff/pokedex.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/jasons_stuff/pokedex_extra.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-235928" />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/jasons_stuff/util_stuff/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/jasons_stuff/pokedex_parsed.json">
+    <entry file="file://$PROJECT_DIR$/jasons_stuff/data_stuff/pokedex_parsed.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="1" column="317" lean-forward="true" selection-start-line="1" selection-end-line="1" selection-end-column="317" />
+        <state relative-caret-position="11460">
+          <caret line="764" column="41" selection-start-line="764" selection-start-column="41" selection-end-line="764" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jasons_stuff/json_setup.py">
+    <entry file="file://$PROJECT_DIR$/jasons_stuff/util_stuff/json_setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+        <state relative-caret-position="325">
+          <caret line="26" column="18" lean-forward="true" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
           <folding>
             <element signature="e#104#115#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jasons_stuff/find.py">
+    <entry file="file://$PROJECT_DIR$/jasons_stuff/data_stuff/pokedex_extra.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="40" column="25" lean-forward="true" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
+        <state relative-caret-position="-235910" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jasons_stuff/util_stuff/find.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-47">
+          <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jasons_stuff/mini_app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
