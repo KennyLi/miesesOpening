@@ -20,9 +20,9 @@ def parsefile():
     load_str = "https://pokeapi.co/api/v2/pokemon/"
     #test = 0
     stats = ["HP", "Attack", "Defense", "Sp. Attack", "Sp. Defense", "Speed"]
-    for x in range(10):
-        pkmon = data[x]
-    # for pkmon in data[:-2]:
+    # for x in range(10):
+    #     pkmon = data[x]
+    for pkmon in data[:-2]:
         received_info = load_bypass(load_str+str(pkmon["id"]))
         #print("FDSFSDFDSFJKSDHFJKSDHFJKSKF\n\n\n\n")
         #print(received_info)

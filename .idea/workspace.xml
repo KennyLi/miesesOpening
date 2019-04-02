@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0b4fa72-23dc-482a-a177-b8765b1ded35" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jasons_stuff/find.py" beforeDir="false" afterPath="$PROJECT_DIR$/jasons_stuff/find.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jasons_stuff/json_setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/jasons_stuff/json_setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jasons_stuff/pokedex_parsed.json" beforeDir="false" afterPath="$PROJECT_DIR$/jasons_stuff/pokedex_parsed.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="json_setup.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="json_setup.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jasons_stuff/json_setup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="47" column="23" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
+            <state relative-caret-position="360">
+              <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
               <folding>
                 <element signature="e#104#115#0" expanded="true" />
               </folding>
@@ -27,20 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="find.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="find.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jasons_stuff/find.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="42" lean-forward="true" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pokedex_parsed.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jasons_stuff/pokedex_parsed.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="712">
-              <caret line="807" column="245" lean-forward="true" selection-start-line="807" selection-start-column="245" selection-end-line="807" selection-end-column="245" />
+            <state relative-caret-position="311">
+              <caret line="40" column="25" lean-forward="true" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -68,9 +59,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/jasons_stuff/find.py" />
         <option value="$PROJECT_DIR$/jasons_stuff/pokedex_parsed.json" />
         <option value="$PROJECT_DIR$/jasons_stuff/json_setup.py" />
+        <option value="$PROJECT_DIR$/jasons_stuff/find.py" />
       </list>
     </option>
   </component>
@@ -204,25 +195,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jasons_stuff/pokedex_parsed.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="712">
-          <caret line="807" column="245" lean-forward="true" selection-start-line="807" selection-start-column="245" selection-end-line="807" selection-end-column="245" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jasons_stuff/find.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="42" lean-forward="true" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+        <state relative-caret-position="30">
+          <caret line="1" column="317" lean-forward="true" selection-start-line="1" selection-end-line="1" selection-end-column="317" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jasons_stuff/json_setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="47" column="23" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
+        <state relative-caret-position="360">
+          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
           <folding>
             <element signature="e#104#115#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jasons_stuff/find.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="40" column="25" lean-forward="true" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
         </state>
       </provider>
     </entry>

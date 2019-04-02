@@ -16,6 +16,7 @@
 
 import pymongo
 
+
 # server_addr = "jayy.mooo.com"
 # connection = pymongo.MongoClient(server_addr)
 # db = connection.test
@@ -28,10 +29,13 @@ import pymongo
 
 def find_pokemans(db, kwargs):
     connection = db.miesesgang
-    # POSSIBLE ARGS: id, name, type["t1"],
+    # POSSIBLE ARGS:{"id": 1, "name": "Bulbasaur", "type": ["Grass", "Poison"],
+    # "HP": 45, "Attack": 49, "Defense": 49, "Sp. Attack": 65, "Sp. Defense": 65, "Speed": 45,
+    # "abilities": ["chlorophyll", "overgrow"], "sprite": ".../1.png", "height": "0.7", "weight": "6.9"},
     find_query = {}
-    args = {"num": None, "name": None, "type": None, "height": None,
-            "weight": None, "weaknesses": None, "evolutions": None}
+    args = {"id": None, "name": None, "type": None,
+            "HP": None, "Attack": None, "Defense": None, "Sp. Attack": None, "Sp. Defense": None, "Speed": None,
+            "abilities": None, "sprite": None,"height": None,"weight": None}
     for k in args.keys():
         args[k] = kwargs.get(k, None)
         if args[k] is not None:
@@ -46,7 +50,7 @@ def find_pokemans(db, kwargs):
     tot_str.append("QUERY:" + str(find_query))
     tot_str.append("-+-+-")
     for k in connection.find(find_query):
-        tot_str.append("name: " + str( k['name'] ))
+        tot_str.append("name: " + str(k['name']))
         for ele in args:
             if args[ele] is not None:
                 if ele == "evolutions":
@@ -58,11 +62,10 @@ def find_pokemans(db, kwargs):
                         except:
                             pass
                 elif ele != "name":
-                    tot_str.append(ele + ": " + str( k[ele] ))
+                    tot_str.append(ele + ": " + str(k[ele]))
         tot_str.append("")
     tot_str.append("-+-+-")
     return tot_str
-
 
 # print("EVOLUTION: CHARIZARD")
 # print("~~~~~~~~~~~~~~~~~~")
