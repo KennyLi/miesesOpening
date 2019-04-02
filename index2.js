@@ -45,5 +45,6 @@ g.append("path")
 g.append("text")
 	.attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
 	.text(function(d) { return d.data.letter;})
-	.style("fill", "#fff");
+	.style("fill", "#fff")
+    .style("text-anchor", "middle");
 
