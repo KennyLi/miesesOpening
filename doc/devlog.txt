@@ -19,11 +19,16 @@ Visualization of Pokemon Data
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
-kennyL -- 00:33
+kennyL -- 2019-03-27 00:33
 --------------------------------------------------------------
 Updated README with rough outline of project.
 1. Description Of Data Sets
 2. How To Make This Data Come Alive
 3. Explanation Of D3 Feature Utilization
 4. Sketch-Up Of Envisioned Visualization
+==============================================================
+
+kennyL -- 2019-04-1 21:40
+--------------------------------------------------------------
+Updated README with install/launch innstructions
 ==============================================================
