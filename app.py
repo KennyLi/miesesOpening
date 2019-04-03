@@ -39,6 +39,11 @@ def test():
     # print(results)
     return render_template('index.html', list_all_pokemon = dumps(all_pokemon))
 
+@app.route('/radar_demo')
+def radar_demo():
+    return render_template('radar.html')
+
+
 if __name__ == '__main__':
     app.debug = True #set to False in production mode
     app.run()
