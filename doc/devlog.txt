@@ -18,15 +18,6 @@ Visualization of Pokemon Data
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-jasonT -- 2019-04-02 20:50
---------------------------------------------------------------
-- removed unused json
-+ made system to parse, refactor, and add to json
-+ made system to set up db on any server
-+ made system to connect to db after setting up and access our data
-+ made small mini_app for ease of use
-==============================================================
-
 kennyL -- 2019-03-27 00:33
 --------------------------------------------------------------
 Updated README with rough outline of project.
@@ -36,7 +27,24 @@ Updated README with rough outline of project.
 4. Sketch-Up Of Envisioned Visualization
 ==============================================================
 
-kennyL -- 2019-04-1 21:40
+kennyL -- 2019-04-01 21:40
 --------------------------------------------------------------
 Updated README with install/launch instructions
+==============================================================
+
+jasonT -- 2019-04-02 20:50
+--------------------------------------------------------------
+- removed unused json
++ made system to parse, refactor, and add to json
++ made system to set up db on any server
++ made system to connect to db after setting up and access our data
++ made small mini_app for ease of use
+==============================================================
+
+raymondW -- 2019-04-03 00:30
+--------------------------------------------------------------
++ added flask starter kit
++ refactored repo dir, put mongodb data mgmt .py files in /util
++ added index.html template
++ worked w/ jasonT to import data from mongo db, parse into JSON in javascript
 ==============================================================
