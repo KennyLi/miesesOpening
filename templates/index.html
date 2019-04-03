@@ -6,9 +6,14 @@ Homepage
 
 {% block javascript %}
 <script>
-  
-  var all_pokemon = JSON.parse( "{{ all_pokemon|safe }}" )
-  console.log(all_pokemon)
+
+  //var all_pokemon = JSON.parse( "{{ all_pokemon|safe }}" )
+  var all_pokemon = {{ list_all_pokemon | safe }};
+  for (var i =0; i <10; i++){
+      console.log(all_pokemon[i]);
+      console.log("FHIHIHIHIH");
+  }
+  console.log(all_pokemon);
 
 </script>
 <script src="static/js/index.js"></script>
