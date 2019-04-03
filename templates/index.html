@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Homepage
+{% endblock %}
+
+{% block javascript %}
+<script>
+  
+  var all_pokemon = JSON.parse( "{{ all_pokemon|safe }}" )
+  console.log(all_pokemon)
+
+</script>
+<script src="static/js/index.js"></script>
+{% endblock %}

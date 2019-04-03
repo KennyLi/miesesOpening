@@ -35,6 +35,7 @@ def find_pokemans(db, **kwargs):
     :param kwargs: kwargs... something like find_pokemans(db, type = "Flying", Sp. Attack = {"$gt" : "1.0"})
     :return:
     """
+
     connection = db.miesesgang
     # POSSIBLE ARGS:{"id": 1, "name": "Bulbasaur", "type": ["Grass", "Poison"],
     # "HP": 45, "Attack": 49, "Defense": 49, "Sp. Attack": 65, "Sp. Defense": 65, "Speed": 45,
