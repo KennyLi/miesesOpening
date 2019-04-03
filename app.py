@@ -12,6 +12,7 @@ app.secret_key = urandom(32)
 
 import json
 from bson import ObjectId
+from bson.json_util import *
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, o):
@@ -36,7 +37,7 @@ def test():
     # for doc in all_pokemon:
     #     results.append( str(doc) )
     # print(results)
-    return render_template('index.html', list_all_pokemon = JSONEncoder().encode(all_pokemon))
+    return render_template('index.html', list_all_pokemon = dumps(all_pokemon))
 
 if __name__ == '__main__':
     app.debug = True #set to False in production mode
