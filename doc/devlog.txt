@@ -18,6 +18,14 @@ Visualization of Pokemon Data
 ==============================================================
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+jasonT -- 2019-04-02 20:50
+--------------------------------------------------------------
+- removed unused json
++ made system to parse, refactor, and add to json
++ made system to set up db on any server
++ made system to connect to db after setting up and access our data
++ made small mini_app for ease of use
+==============================================================
 
 kennyL -- 2019-03-27 00:33
 --------------------------------------------------------------
