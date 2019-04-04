@@ -40,6 +40,10 @@ def hello_world():
 def muh_api(type):
     return dumps([k for k in finder.find_pokemans(db_pointer, type=type)])
 
+@app.route("/chilling")
+def chilling():
+    return render_template("chilling.html")
+
 # THIS IS YOUR STUFF!
 
 @app.route('/test')

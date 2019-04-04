@@ -1,0 +1,21 @@
+{% extends "awesome.html" %}
+{% block body %}
+<label>TYPES:
+  <select class="dropdown" name="wee">
+    <option value="Fire">fire</option>
+    <option value="Water">water</option>
+    <option value="Grass">grass</option>
+  </select>
+</label>
+<div id = "div"></div>
+<script>
+  var div = document.getElementById("div")
+  var dropdown = document.getElementById("dropdown")
+  e = dropdown
+  dropdown.addEventListener('change', (event) => {
+    div.innerHTML = event.target.value;
+  });
+  hello = $.get( "/muh_api/${e.options[e.selectedIndex].value}" );
+  
+</script>
+{% endblock %}
