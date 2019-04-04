@@ -36,6 +36,40 @@ def hello_world():
         return render_template("land.html", pointed=True)
     return render_template("land.html")
 
+@app.route("/muh_api/<type>", methods=["GET"])
+def muh_api(type):
+    return dumps([k for k in finder.find_pokemans(db_pointer, type=type)])
+
+# THIS IS YOUR STUFF!
+
+@app.route('/test')
+def test():
+    cursor = finder.find_pokemans(db)
+    # for k in cursor:
+    #     print(k)
+    #     print(type(k))
+    all_pokemon = [k for k in cursor]
+    # print(all_pokemon)
+    # results = []
+    # for doc in all_pokemon:
+    #     results.append( str(doc) )
+    # print(results)
+    return render_template('index.html', list_all_pokemon=dumps(all_pokemon))
+
+
+@app.route('/radar_demo')
+def radar_demo():
+    return render_template('radar.html')
+
+
+
+
+
+
+
+
+
+#pretty useless
 
 @app.route("/auth", methods=['POST'])
 def auth():
@@ -83,28 +117,6 @@ def doit():
     print(pk_list)
     print("-----")
     return render_template("display.html", pklist=dumps(pk_list))
-
-
-# THIS IS YOUR STUFF!
-
-@app.route('/test')
-def test():
-    cursor = finder.find_pokemans(db)
-    # for k in cursor:
-    #     print(k)
-    #     print(type(k))
-    all_pokemon = [k for k in cursor]
-    # print(all_pokemon)
-    # results = []
-    # for doc in all_pokemon:
-    #     results.append( str(doc) )
-    # print(results)
-    return render_template('index.html', list_all_pokemon=dumps(all_pokemon))
-
-
-@app.route('/radar_demo')
-def radar_demo():
-    return render_template('radar.html')
 
 
 if __name__ == '__main__':
