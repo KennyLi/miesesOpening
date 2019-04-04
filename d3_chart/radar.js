@@ -2,14 +2,14 @@ var width = 1400,
     height = 700,
     padding = 75;
 //incineroar stats
-var data = [
+/*var data = [
     {"hp":95,
     "atk":115,
     "def":90,
     "spatk":80,
     "spdef":90,
     "speed":60}
-];/*
+];*/
 var data = [
               {"atk":102,
               "def":23,
@@ -30,7 +30,7 @@ var data = [
               "spdef":5,
               "speed":6}
             ];
-*/
+
 //console.log(data)
 var stats = [[],[],[],[],[],[]];
 //var triangles = []
