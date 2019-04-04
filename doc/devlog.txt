@@ -57,4 +57,5 @@ mohammedU -- 2019-04-03 02:00
 jasonT -- 2019-04-03 20:04
 --------------------------------------------------------------
 + front end search function that returns the proper filtered json
++ made the api to filter by type
 ==============================================================
