@@ -59,3 +59,11 @@ jasonT -- 2019-04-03 20:04
 + front end search function that returns the proper filtered json
 + made the api to filter by type
 ==============================================================
+
+jasonT -- 2019-04-04 18:14
+--------------------------------------------------------------
++ fixed the rm
++ fixed the silly api and added get request
+    + prints pokemon based on the dropdown
++ added div that changes based on the dropdown
+==============================================================
