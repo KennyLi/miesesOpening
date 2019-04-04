@@ -24,8 +24,12 @@
             $.get(url, {"type": type})
                 .done(function (response) {
                     console.log(response);
-                    dataz = response;
-                    div2.innerHTML = response;
+                    var pklist = JSON.parse(response)["hello"];
+                    {#div2.innerHTML = pklist;#}
+                    console.log(typeof(pklist));
+                    for (var i = 0; i < pklist.length; i++) {
+                        div2.innerHTML += pklist[i]["name"] + "<br>\n"
+                    }
                 })
         }
 

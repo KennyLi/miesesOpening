@@ -39,7 +39,7 @@ def hello_world():
 @app.route("/muh_api/", methods=["GET"])
 def muh_api():
     pk_type = request.args['type']
-    return dumps([k for k in finder.find_pokemans(db_pointer, type=pk_type)])
+    return dumps({"hello":[k for k in finder.find_pokemans(db_pointer, type=pk_type)]})
 
 @app.route("/chilling")
 def chilling():
