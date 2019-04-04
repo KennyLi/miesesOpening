@@ -1,21 +1,31 @@
 {% extends "awesome.html" %}
 {% block body %}
-<label>TYPES:
-  <select class="dropdown" name="wee">
-    <option value="Fire">fire</option>
-    <option value="Water">water</option>
-    <option value="Grass">grass</option>
-  </select>
-</label>
-<div id = "div"></div>
-<script>
-  var div = document.getElementById("div")
-  var dropdown = document.getElementById("dropdown")
-  e = dropdown
-  dropdown.addEventListener('change', (event) => {
-    div.innerHTML = event.target.value;
-  });
-  hello = $.get( "/muh_api/${e.options[e.selectedIndex].value}" );
-  
-</script>
+    <label>TYPES:
+        <select id="dropdown" name="wee">
+            <option value="Fire">fire</option>
+            <option value="Water">water</option>
+            <option value="Grass">grass</option>
+        </select>
+    </label>
+    <div id="div"></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        var div = document.getElementById("div");
+        var dropdown = document.getElementById("dropdown");
+        var type = dropdown.options[dropdown.selectedIndex].value;
+        div.innerHTML = type;
+        dropdown.addEventListener('change', (event) => {
+            type = dropdown.options[dropdown.selectedIndex].value;
+            div.innerHTML = type;
+        });
+        var url = "/muh_api/";
+        console.log(url);
+        var dataz;
+        var hello = $.get(url, {"type":"Fire"})
+            .done(function (response) {
+                console.log(response);
+                dataz = response;
+            });
+        //console.log(dataz[0]);
+    </script>
 {% endblock %}
