@@ -1,0 +1,17 @@
+{% extends "awesome.html" %}
+{% block body %}
+<h1><a href="/search">SEARCH</a></h1>
+check that code for the js console: display.html
+<div id="wee"></div>
+<br>
+    <script>
+    var box = document.getElementById("wee");
+    var men = {{ pklist |safe }};
+    for (var i = 0; i <men.length; i++){
+        box.innerHTML += men[i]["name"] + "<br>\n"
+    }
+    console.log("THIS IS THE DICT THAT WAS PASSED")
+    console.log(men)
+    //box.innerHTML = men;
+</script>
+{% endblock %}

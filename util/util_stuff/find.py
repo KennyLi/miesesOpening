@@ -27,6 +27,37 @@ import pymongo
 #     print(k)
 
 
+def find_pokemans_dict(db, kwargs):
+    """
+    :param db: connection = pymongo.MongoClient("jayy.mooo.com",serverSelectionTimeoutMS=maxSevSelDelay)
+        connection.server_info()
+        db = connection.test
+    :param kwargs: takes a dict instead of **kwargs
+    :return:
+    """
+
+    connection = db.miesesgang
+    # POSSIBLE ARGS:{"id": 1, "name": "Bulbasaur", "type": ["Grass", "Poison"],
+    # "HP": 45, "Attack": 49, "Defense": 49, "Sp. Attack": 65, "Sp. Defense": 65, "Speed": 45,
+    # "abilities": ["chlorophyll", "overgrow"], "sprite": ".../1.png", "height": "0.7", "weight": "6.9"},
+    find_query = {}
+    args = {"id": None, "name": None, "type": None,
+            "HP": None, "Attack": None, "Defense": None, "Sp Attack": None, "Sp Defense": None, "Speed": None,
+            "abilities": None, "sprite": None,"height": None,"weight": None}
+    for k in args.keys():
+        args[k] = kwargs.get(k, None)
+        if args[k] is not None:
+            # if k == "evolutions":
+            #     find_query["$or"] = [{"next_evolution": {"$elemMatch": {"name": args[k]}}},
+            #                          {"prev_evolution": {"$elemMatch": {"name": args[k]}}}]
+            # elif k in ["weaknesses", 'type']:
+            if k in ["type" or "abilities"]:
+                find_query[k] = {'$in': [args[k]]}
+            else:
+                find_query[k] = args[k]
+    return connection.find(find_query)
+
+
 def find_pokemans(db, **kwargs):
     """
     :param db: connection = pymongo.MongoClient("jayy.mooo.com",serverSelectionTimeoutMS=maxSevSelDelay)
