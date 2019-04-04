@@ -57,6 +57,7 @@ Our dependencies, as listed in requirements.txt, are as follows:
 | Jinja2 | 2.10 | Flask | templating language |
 | MarkupSafe | 1.1.1 | Flask | unused |
 | Werkzeug | 0.15.1 | Flask | unused |
+| pymongo | 3.7.2 | mongo | db lang |
 
 Install our dependencies with the follow command in the root directory of our repo:
 ```pip3 install -r requirements.txt```
