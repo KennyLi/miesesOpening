@@ -56,7 +56,7 @@ var axes = [0,0,0,0,0,0]
 
 for (let i = 0; i < 6; i++ ){
   axes[i] = d3.scaleLinear()
-    .domain([0,200])
+    .domain([0,255])
     .range([0,200]);
 }
 /*var chart = d3.select("svg")
@@ -67,9 +67,18 @@ group = svg.append("g")
 for (let ax = 0; ax < 6; ax++){
   dat = group
     .append("g");
-  g = dat
-    .append("g")
-    .call(d3.axisLeft(axes[ax]));
+  if (ax == 0){
+    g = dat
+      .append("g")
+      .call(d3.axisLeft(axes[ax]).tickSize(0))
+    .selectAll("text")
+      .attr("transform","rotate(180)");
+  }
+  else {
+    g = dat
+      .append("g")
+      .call(d3.axisLeft(axes[ax]).tickValues([]));
+  }
 //    .attr("transform","translate(300,300),rotate("+60*ax+")");
   h = dat
     .append("g");
@@ -88,8 +97,9 @@ for (let ax = 0; ax < 6; ax++){
   dat.attr("transform","rotate("+(180+60*ax)+")");
 };
 console.log(points);
+
 var poly = [];
-triangles = group.append("g")
+/*triangles = group.append("g")
 for (let i = 0; i < 6; i++){
   tri = triangles
     .append("g");
@@ -98,6 +108,28 @@ for (let i = 0; i < 6; i++){
     .attr("style","fill:orange;stroke:black"));
   tri.attr("transform","rotate("+(180+60*i)+")");
 }
+*/
+stri = "0,"+points[0]+" ";
+for (let i = 1; i < 6; i++){
+  stri += points[i]*Math.sin(i*Math.PI/-3)+","+points[i]*Math.cos(i*Math.PI/-3)
+  if (i != 5){
+    stri += " "
+  }
+};
+console.log(stri);
+tray = group.append("g");
+tray.append("polygon")
+  .attr("points",stri)
+  .attr("style","fill:red;stroke:black;fill-opacity:0.5")
+  .attr("transform","rotate(180)")
+  .on("mouseover",function(){
+    d3.select(this)
+      .attr("style","fill:red;stroke:black;fill-opacity:0.9");
+  })
+  .on("mouseout",function(){
+    d3.select(this)
+      .attr("style","fill:red;stroke:black;fill-opacity:0.5");
+  });
 console.log(poly);
 group.attr("transform","translate(300,300)");
 
