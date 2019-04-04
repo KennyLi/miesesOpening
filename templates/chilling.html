@@ -27,6 +27,7 @@
                     var pklist = JSON.parse(response)["hello"];
                     {#div2.innerHTML = pklist;#}
                     console.log(typeof(pklist));
+                    div2.innerHTML = "";
                     for (var i = 0; i < pklist.length; i++) {
                         div2.innerHTML += pklist[i]["name"] + "<br>\n"
                     }
