@@ -1,12 +1,29 @@
 <!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Radar chart</title>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
 
-<head>
-  <title> testy </title>
-</head>
-<body>
-  <p>base stats for incineroar</p>
-<div id="body"></div>
-</body>
+	<style>
+		body {
+		  overflow: hidden;
+		  margin: 0;
+		  font-size: 14px;
+		  font-family: "Helvetica Neue", Helvetica;
+		}
 
-<script src="http://d3js.org/d3.v5.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="radar.js"></script>
+		#chart {
+		  position: absolute;
+		  top: 50px;
+		  left: 100px;
+		}
+	</style>
+  </head>
+  <body>
+		<button id="update">Update</button>		
+	  <div id="chart"></div>
+		<script src="radar.js"></script>
+
+  </body>
+</html>

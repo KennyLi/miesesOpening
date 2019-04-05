@@ -20,16 +20,16 @@ Visualization of Pokemon Data
 
 kennyL -- 2019-03-27 00:33
 --------------------------------------------------------------
-Updated README with rough outline of project.
-1. Description Of Data Sets
-2. How To Make This Data Come Alive
-3. Explanation Of D3 Feature Utilization
-4. Sketch-Up Of Envisioned Visualization
++ Updated README with rough outline of project.
+    1. Description Of Data Sets
+    2. How To Make This Data Come Alive
+    3. Explanation Of D3 Feature Utilization
+    4. Sketch-Up Of Envisioned Visualization
 ==============================================================
 
 kennyL -- 2019-04-01 21:40
 --------------------------------------------------------------
-Updated README with install/launch instructions
++ Updated README with install/launch instructions
 ==============================================================
 
 jasonT -- 2019-04-02 20:50
@@ -66,4 +66,11 @@ jasonT -- 2019-04-04 18:14
 + fixed the silly api and added get request
     + prints pokemon based on the dropdown
 + added div that changes based on the dropdown
+==============================================================
+
+kennyL -- 2019-04-05 00:48
+--------------------------------------------------------------
++ added transitions to radar chart
+- refactored code for radar chart (removed unecessary lines)
+- removed test files
 ==============================================================

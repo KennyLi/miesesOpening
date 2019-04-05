@@ -1,153 +1,183 @@
-var width = 1400,
-    height = 700,
-    padding = 75;
-//incineroar stats
-/*var data = [
-    {"hp":95,
-    "atk":115,
-    "def":90,
-    "spatk":80,
-    "spdef":90,
-    "speed":60}
-];*/
-var data = [
-              {"atk":102,
-              "def":23,
-              "hp":43,
-              "spatk":15,
-              "spdef":14,
-              "speed":16},
-              {"atk":23,
-              "def":24,
-              "hp":26,
-              "spatk":12,
-              "spdef":11,
-              "speed":12},
-              {"atk":20,
-              "def":15,
-              "hp":18,
-              "spatk":30,
-              "spdef":5,
-              "speed":6}
-            ];
+var d = [
+	{ axis: "HP", value: 59 },
+	{ axis: "Atk", value: 206 },
+	{ axis: "Def", value: 42 },
+	{ axis: "Speed", value: 57 },
+	{ axis: "Sp Def", value: 66 },
+	{ axis: "Sp Atk", value: 115 }
+]
 
-//console.log(data)
-var stats = [[],[],[],[],[],[]];
-//var triangles = []
-for (let i = 0; i < data.length; i++){
-  stats[0].push(data[i]["hp"]);
-  stats[1].push(data[i]["atk"]);
-  stats[2].push(data[i]["def"]);
-  stats[3].push(data[i]["spatk"]);
-  stats[4].push(data[i]["spdef"]);
-  stats[5].push(data[i]["speed"]);
-  //stats.push([data[i]["hp"],data[i]["atk"],data[i]["def"],data[i]["spatk"],data[i]["spdef"],data[i]["speed"]]);
+var RadarChart = {
+	draw: function (id, d) {
+		var cfg = {
+			radius: 5,
+			w: 500,
+			h: 500,
+			factor: 1,
+			factorLegend: .85,
+			levels: 6,
+			maxValue: 0.6,
+			radians: 2 * Math.PI,
+			opacityArea: 0.5,
+			ToRight: 5,
+			TranslateX: 80,
+			TranslateY: 30,
+			ExtraWidthX: 100,
+			ExtraWidthY: 100,
+			color: d3.scale.category10(),
+			maxValue: 300
+		};
+
+		var allAxis = (d.map(function (i, j) { return i.axis }));
+		var total = allAxis.length;
+		var radius = cfg.factor * Math.min(cfg.w / 2, cfg.h / 2);
+		var Format = d3.format('');
+
+		var svg = d3.select(id).select('svg'),
+			polyPoints = null;
+		if (svg.node()) {
+			polyPoints = svg.select("polygon").attr("points");
+			svg.remove();
+		}
+
+		var g = d3.select(id)
+			.append("svg")
+			.attr("width", cfg.w + cfg.ExtraWidthX)
+			.attr("height", cfg.h + cfg.ExtraWidthY)
+			.append("g")
+			.attr("transform", "translate(" + cfg.TranslateX + "," + cfg.TranslateY + ")");
+		;
+
+		//Circular segments
+		for (var j = 0; j < cfg.levels; j++) {
+			var levelFactor = cfg.factor * radius * ((j + 1) / cfg.levels);
+			g.selectAll(".levels")
+				.data(allAxis)
+				.enter()
+				.append("svg:line")
+				.attr("x1", function (d, i) { return levelFactor * (1 - cfg.factor * Math.sin(i * cfg.radians / total)); })
+				.attr("y1", function (d, i) { return levelFactor * (1 - cfg.factor * Math.cos(i * cfg.radians / total)); })
+				.attr("x2", function (d, i) { return levelFactor * (1 - cfg.factor * Math.sin((i + 1) * cfg.radians / total)); })
+				.attr("y2", function (d, i) { return levelFactor * (1 - cfg.factor * Math.cos((i + 1) * cfg.radians / total)); })
+				.style("stroke", "grey")
+				.style("stroke-opacity", "0.75")
+				.style("stroke-width", "0.3px")
+				.attr("transform", "translate(" + (cfg.w / 2 - levelFactor) + ", " + (cfg.h / 2 - levelFactor) + ")");
+		}
+
+		//Text indicating at what % each level is
+		for (var j = 0; j < cfg.levels; j++) {
+			var levelFactor = cfg.factor * radius * ((j + 1) / cfg.levels);
+			g.selectAll(".levels")
+				.data([1]) //dummy data
+				.enter()
+				.append("svg:text")
+				.attr("x", function (d) { return levelFactor * (1 - cfg.factor * Math.sin(0)); })
+				.attr("y", function (d) { return levelFactor * (1 - cfg.factor * Math.cos(0)); })
+				.style("font-family", "sans-serif")
+				.style("font-size", "10px")
+				.attr("transform", "translate(" + (cfg.w / 2 - levelFactor + cfg.ToRight) + ", " + (cfg.h / 2 - levelFactor) + ")")
+				.attr("fill", "#737373")
+				.text(Format((j + 1) * cfg.maxValue / cfg.levels));
+		}
+
+		var axis = g.selectAll(".axis")
+			.data(allAxis)
+			.enter()
+			.append("g")
+
+		axis.append("line")
+			.attr("x1", cfg.w / 2)
+			.attr("y1", cfg.h / 2)
+			.attr("x2", function (d, i) { return cfg.w / 2 * (1 - cfg.factor * Math.sin(i * cfg.radians / total)); })
+			.attr("y2", function (d, i) { return cfg.h / 2 * (1 - cfg.factor * Math.cos(i * cfg.radians / total)); })
+			.style("stroke", "grey")
+			.style("stroke-width", "1px");
+
+		axis.append("text")
+			.text(function (d) { return d })
+			.style("font-family", "sans-serif")
+			.style("font-size", "11px")
+			.attr("text-anchor", "middle")
+			.attr("dy", "1.5em")
+			.attr("transform", function (d, i) { return "translate(0, -10)" })
+			.attr("x", function (d, i) { return cfg.w / 2 * (1 - cfg.factorLegend * Math.sin(i * cfg.radians / total)) - 60 * Math.sin(i * cfg.radians / total); })
+			.attr("y", function (d, i) { return cfg.h / 2 * (1 - Math.cos(i * cfg.radians / total)) - 20 * Math.cos(i * cfg.radians / total); });
+
+
+		dataValues = [];
+		g.selectAll(".nodes")
+			.data(d, function (j, i) {
+				dataValues.push([
+					cfg.w / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total)),
+					cfg.h / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total))
+				]);
+			});
+		g.selectAll(".area")
+			.data([dataValues])
+			.enter()
+			.append("polygon")
+			.style("stroke-width", "2px")
+			.style("stroke", cfg.color(0))
+			.attr("points", function (d) {
+				if (polyPoints)
+					return polyPoints;
+				else
+					return d3.range(d.length).map(function () {
+						return (cfg.w / 2) + "," + (cfg.h / 2)
+					}).join(" ");
+			})
+			.style("fill-opacity", cfg.opacityArea)
+			.style("fill", function (j, i) { return cfg.color(0) })
+			
+			.transition()
+			.duration(2000)
+			.attr("points", function (d) {
+				var str = "";
+				for (var pti = 0; pti < d.length; pti++) {
+					str = str + d[pti][0] + "," + d[pti][1] + " ";
+				}
+				return str;
+			})
+			
+
+		g.selectAll(".nodes")
+			.data(d).enter()
+			.append("circle")
+			.attr('r', cfg.radius)
+			.attr("cx", function (j, i) {
+				dataValues.push([
+					cfg.w / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total)),
+					cfg.h / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total))
+				]);
+				return cfg.w / 2 * (1 - (Math.max(j.value, 0) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total));
+			})
+			.attr("cy", function (j, i) {
+				return cfg.h / 2 * (1 - (Math.max(j.value, 0) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total));
+			})
+			.style("fill", cfg.color(0))
+			.style("fill-opacity", 0)
+
+			.transition()
+			.delay(1750)
+			.duration(100)
+			.style("fill-opacity", 0.9);
+	}
 };
 
-//console.log(stats);
 
-
-var svg = d3.select("body")
-  .append("svg")
-  .attr("width",width)
-  .attr("height",height)
-
-var axes = [0,0,0,0,0,0]
-
-for (let i = 0; i < 6; i++ ){
-  axes[i] = d3.scaleLinear()
-    .domain([0,255])
-    .range([0,200]);
-}
-/*var chart = d3.select("svg")
-  .draw("")
-*/
-var points = [];
-group = svg.append("g")
-for (let ax = 0; ax < 6; ax++){
-  dat = group
-    .append("g");
-  if (ax == 0){
-    g = dat
-      .append("g")
-      .call(d3.axisLeft(axes[ax]).tickSize(0))
-    .selectAll("text")
-      .attr("transform","rotate(180)");
-  }
-  else {
-    g = dat
-      .append("g")
-      .call(d3.axisLeft(axes[ax]).tickValues([]));
-  }
-//    .attr("transform","translate(300,300),rotate("+60*ax+")");
-  h = dat
-    .append("g");
-  h.selectAll("dots")
-    .data(stats[ax])
-    .enter().append("svg:circle")
-    .attr("cy",function(d){
-      points.push(axes[ax](d));
-      return (axes[ax](d));
-    })
-    .attr("cx",function(d){
-      return (axes[ax](0));
-    })
-    .attr("r",5)
-    .style("opacity",0.6);
-  dat.attr("transform","rotate("+(180+60*ax)+")");
+function update() {
+	data = [
+		{ axis: "HP", value: 153 },
+		{ axis: "Atk", value: 25 },
+		{ axis: "Def", value: 46 },
+		{ axis: "Speed", value: 56 },
+		{ axis: "Sp Def", value: 103 },
+		{ axis: "Sp Atk", value: 177 }
+	]
+	RadarChart.draw("#chart", data)
 };
-console.log(points);
 
-var poly = [];
-/*triangles = group.append("g")
-for (let i = 0; i < 6; i++){
-  tri = triangles
-    .append("g");
-  poly.push(tri.append("polygon")
-    .attr("points","0,0 0,"+points[i]+" "+points[(i+1)%6]*Math.sin(Math.PI/-3)+","+points[(i+1)%6]*Math.cos(Math.PI/-3) )
-    .attr("style","fill:orange;stroke:black"));
-  tri.attr("transform","rotate("+(180+60*i)+")");
-}
-*/
-stri = "0,"+points[0]+" ";
-for (let i = 1; i < 6; i++){
-  stri += points[i]*Math.sin(i*Math.PI/-3)+","+points[i]*Math.cos(i*Math.PI/-3)
-  if (i != 5){
-    stri += " "
-  }
-};
-console.log(stri);
-tray = group.append("g");
-tray.append("polygon")
-  .attr("points",stri)
-  .attr("style","fill:red;stroke:black;fill-opacity:0.5")
-  .attr("transform","rotate(180)")
-  .on("mouseover",function(){
-    d3.select(this)
-      .attr("style","fill:red;stroke:black;fill-opacity:0.9");
-  })
-  .on("mouseout",function(){
-    d3.select(this)
-      .attr("style","fill:red;stroke:black;fill-opacity:0.5");
-  });
-console.log(poly);
-group.attr("transform","translate(300,300)");
+d3.select("button").on("click", update);
 
-
-
-/*
-for (let i = 0; i < 6; i++){
-  g = group.append("g")
-  g.selectAll("dots")
-    .data(stats[i])
-    .enter().append("svg:circle")
-    .attr("cy",function(d){
-      return (axes[i](0)+300)*Math.sin(60*i*Math.PI/180);
-    })
-    .attr("cx",function(d){
-      return (axes[i](d)+300)*Math.cos(60*i*Math.PI/180);
-    })
-    .attr("r",5)
-    .style("opacity",0.6);
-}
-*/
+RadarChart.draw("#chart", d);
