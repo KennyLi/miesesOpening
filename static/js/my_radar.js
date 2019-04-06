@@ -227,6 +227,9 @@ var update_graph = (type) => {
                             .style("fill", cfg.color(0))
                             .style("fill-opacity", .9)
                             .attr('r', cfg.radius * 2)
+                            .text(function (d, i) {
+                                return "hi";
+                            })
                     })
                     .on('mouseout', function () {
                         d3.select(this)
