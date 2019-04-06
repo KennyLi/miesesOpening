@@ -74,3 +74,8 @@ kennyL -- 2019-04-05 00:48
 - refactored code for radar chart (removed unecessary lines)
 - removed test files
 ==============================================================
+
+jasonT -- 2019-04-06 15:11
+--------------------------------------------------------------
++ hooked up the dropdown to the graph
+==============================================================
