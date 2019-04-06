@@ -1,7 +1,7 @@
 var hp, atk, def, speed, special_defense, special_attack;
 var d;
 
-var types = ['Normal','Fighting','Flying','Poison','Ground','Rock','Bug','Ghost','Steel','Fire','Water','Grass','Electric','Psychic','Ice','Dragon','Dark','Fairy'];
+var types = ['Normal', 'Fighting', 'Flying', 'Poison', 'Ground', 'Rock', 'Bug', 'Ghost', 'Steel', 'Fire', 'Water', 'Grass', 'Electric', 'Psychic', 'Ice', 'Dragon', 'Dark', 'Fairy'];
 
 var update_graph = (type) => {
     var promise = new Promise(function (resolve, reject) {
@@ -120,6 +120,7 @@ var update_graph = (type) => {
                         .style("stroke-opacity", "0.75")
                         .style("stroke-width", "0.3px")
                         .attr("transform", "translate(" + (cfg.w / 2 - levelFactor) + ", " + (cfg.h / 2 - levelFactor) + ")");
+
                 }
 
                 //Text indicating at what % each level is
@@ -206,7 +207,7 @@ var update_graph = (type) => {
                     })
 
                     .transition()
-                    .duration(2000)
+                    .duration(950)
                     .attr("points", function (d) {
                         var str = "";
                         for (var pti = 0; pti < d.length; pti++) {
@@ -219,6 +220,22 @@ var update_graph = (type) => {
                 g.selectAll(".nodes")
                     .data(d).enter()
                     .append("circle")
+                    .on('mouseover', function () {
+                        d3.select(this)
+                            .transition()
+                            .duration(500)
+                            .style("fill", cfg.color(0))
+                            .style("fill-opacity", .9)
+                            .attr('r', cfg.radius * 2)
+                    })
+                    .on('mouseout', function () {
+                        d3.select(this)
+                            .transition()
+                            .duration(500)
+                            .style("fill", cfg.color(0))
+                            .style("fill-opacity", 0.75)
+                            .attr('r', cfg.radius)
+                    })
                     .attr('r', cfg.radius)
                     .attr("cx", function (j, i) {
                         dataValues.push([
@@ -232,11 +249,11 @@ var update_graph = (type) => {
                     })
                     .style("fill", cfg.color(0))
                     .style("fill-opacity", 0)
-
                     .transition()
-                    .delay(1750)
+                    .delay(950)
                     .duration(100)
-                    .style("fill-opacity", 0.9);
+                    .style("fill-opacity", 0.9)
+                ;
             }
         };
 
