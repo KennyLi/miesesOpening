@@ -1,11 +1,32 @@
+var hp, atk, def, speed, special_defense, special_attack;
+hp, atk, def, speed, special_defense, special_attack = 100;
+
 var d = [
-	{ axis: "HP", value: 59 },
-	{ axis: "Atk", value: 206 },
-	{ axis: "Def", value: 42 },
-	{ axis: "Speed", value: 57 },
-	{ axis: "Sp Def", value: 66 },
-	{ axis: "Sp Atk", value: 115 }
+	{ axis: "HP", value: hp },
+	{ axis: "Atk", value: atk },
+	{ axis: "Def", value: def },
+	{ axis: "Speed", value: speed },
+	{ axis: "Sp Def", value: special_defense },
+	{ axis: "Sp Atk", value: special_attack }
 ]
+
+var promise = new Promise( function( resolve, reject) {
+    
+    $.get( "/muh_api/", {"type": "Fire"} )
+        .done( function(response) {
+            resolve(response);
+        })
+        .fail( function() {
+            reject();
+        });
+})
+
+promise.then(function(result) {
+    console.log(result); // show JSON
+}, function(err) {
+    console.log(err); 
+});
+
 
 var RadarChart = {
 	draw: function (id, d) {

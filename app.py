@@ -30,6 +30,10 @@ db = connection.test
 db_pointer = db
 
 
+@app.route("/rymd-test")
+def ahhhh():
+    return render_template("test_json.html")
+
 @app.route("/")
 def hello_world():
     if db_pointer is not None:

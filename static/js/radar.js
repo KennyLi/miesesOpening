@@ -2,13 +2,22 @@ var width = 1400,
     height = 700,
     padding = 75;
 //incineroar stats
+
+var hp, attack, defense, special_attack, special_defense, speed;
+
+
+// make a GET request to /muh_api/Fire
+// convert into JSON
+// parse JSON --> get stats
+
+
 var data = [
-    {"hp":95,
-    "atk":115,
-    "def":90,
-    "spatk":80,
-    "spdef":90,
-    "speed":60}
+    {"hp":hp,
+     "atk":attack,
+     "def":defense,
+     "spatk":special_attack,
+     "spdef":special_defense,
+     "speed":speed}
 ];/*
 var data = [
               {"atk":102,
