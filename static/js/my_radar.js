@@ -237,6 +237,8 @@ d3.select("button").on("click", hard_coded_update);
             update_graph(type);
         });
 
+type = dropdown.options[dropdown.selectedIndex].value;
+            update_graph(type);
 
 
 // TODO change hard_coded_update
