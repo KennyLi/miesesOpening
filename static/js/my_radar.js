@@ -1,4 +1,4 @@
-var hp, atk, def, speed, special_defense, special_attack;
+	var hp, atk, def, speed, special_defense, special_attack;
 var d;
 
 var update_graph = (type) => {
@@ -11,7 +11,7 @@ var update_graph = (type) => {
             .fail( function() {
                 reject();
             });
-    })
+    });
 
     promise.then(function(result) {
         hp = 0;
@@ -228,6 +228,16 @@ var hard_coded_update = () => {
 }
 
 d3.select("button").on("click", hard_coded_update);
+
+
+//jason's updates:
+	var dropdown = document.getElementById("dropdown");
+	dropdown.addEventListener('change', (event) => {
+            type = dropdown.options[dropdown.selectedIndex].value;
+            update_graph(type);
+        });
+
+
 
 // TODO change hard_coded_update
 //      to a more dynamic update
