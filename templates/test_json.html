@@ -1,31 +1,79 @@
 {% extends 'base.html' %}
 
 {% block title %}
-I really hope this works :))
+    I really hope this works :))
 {% endblock %}
 
 {% block style %}
-<style>
-  body {
-	  overflow: hidden;
-	  margin: 0;
-	  font-size: 14px;
-	  font-family: "Helvetica Neue", Helvetica;
-  }
+    <style>
+        body {
+            overflow: hidden;
+            margin: 0;
+            font-size: 14px;
+            font-family: "Helvetica Neue", Helvetica;
+        }
 
-  #chart {
-	  position: absolute;
-	  top: 50px;
-	  left: 100px;
-  }
-</style>
+        #chart {
+            position: absolute;
+            top: 50px;
+            left: 100px;
+        }
+
+        body {
+            font: 10px sans-serif;
+        }
+
+        div.tooltip {
+            position: absolute; /*very important*/
+            text-align: left;
+            padding: 5px 10px 5px 10px;
+            font: bold 11px sans-serif;
+            /*color: black;*/
+            background: yellow;
+            border-radius: 8px;
+            pointer-events: none;
+        }
+
+        /* do this or append circles AFTER appending recs */
+        rect {
+            pointer-events: none;
+        }
+
+        .axis line,
+        .axis path {
+            fill: none;
+            /*stroke: #000;*/
+            shape-rendering: crispEdges;
+        }
+
+        .arrow {
+            /*stroke: #000;*/
+            stroke-width: 1.5px;
+        }
+
+        .outer,
+        .inner {
+            shape-rendering: crispEdges;
+        }
+
+        .outer {
+            fill: none;
+            /*stroke: #000;*/
+        }
+
+        .inner {
+            fill: transparent;
+            /*stroke: #000;*/
+            stroke-dasharray: 3, 4;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
-<button id="update">Update</button>		
-<div id="chart"></div>
+    <button id="update">Update</button>
+    <div id="chart"></div>
 
-{#    HELLO!!!!#}
+    {#    HELLO!!!!#}
     <label>TYPES:
         <select id="dropdown" name="wee">
             <option value="Fire">fire</option>
@@ -37,8 +85,9 @@ I really hope this works :))
 {% endblock %}
 
 {% block javascript %}
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-<script src="/static/js/my_radar.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="/static/js/my_radar.js"></script>
 {% endblock %}
 
