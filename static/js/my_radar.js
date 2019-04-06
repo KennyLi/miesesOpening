@@ -1,6 +1,8 @@
 var hp, atk, def, speed, special_defense, special_attack;
 var d;
 
+var types = ['Normal','Fighting','Flying','Poison','Ground','Rock','Bug','Ghost','Steel','Fire','Water','Grass','Electric','Psychic','Ice','Dragon','Dark','Fairy'];
+
 var update_graph = (type) => {
     var promise = new Promise(function (resolve, reject) {
 
@@ -38,6 +40,7 @@ var update_graph = (type) => {
         special_defense /= response.length;
         special_attack /= response.length;
 
+        console.log("axis");
         console.log([hp, atk, def, speed, special_defense, special_attack]);
 
 
@@ -48,7 +51,7 @@ var update_graph = (type) => {
             {axis: "Speed", value: speed},
             {axis: "Sp Def", value: special_defense},
             {axis: "Sp Atk", value: special_attack}
-        ]
+        ];
 
 
         var RadarChart = {
@@ -69,7 +72,7 @@ var update_graph = (type) => {
                     ExtraWidthX: 100,
                     ExtraWidthY: 100,
                     color: d3.scale.category10(),
-                    maxValue: 300
+                    maxValue: 120
                 };
 
                 var allAxis = (d.map(function (i, j) {
@@ -246,7 +249,7 @@ var update_graph = (type) => {
 
 }
 
-update_graph("Grass"); // will show this graph when first load page
+//update_graph("Grass"); // will show this graph when first load page
 
 
 var hard_coded_update = () => {

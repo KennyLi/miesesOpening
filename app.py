@@ -127,6 +127,17 @@ def doit():
     print("-----")
     return render_template("display.html", pklist=dumps(pk_list))
 
+@app.route("/find_avg", methods=['POST', "GET"])
+def testy():
+    max_stat = 0
+    types = ['Normal','Fighting','Flying','Poison','Ground','Rock','Bug','Ghost','Steel','Fire','Water','Grass','Electric','Psychic','Ice','Dragon','Dark','Fairy']
+    stats = ['HP', 'Attack', 'Defense', 'Sp Attack', 'Sp Defense', 'Speed']
+    for x in types:
+        pk_list = [k for k in finder.find_pokemans(db_pointer, type=x)]
+        for stat in stats:
+            avg_stat = sum([k[stat] for k in pk_list])/len(pk_list)
+            max_stat = max(avg_stat,max_stat)
+    return str(max_stat)
 
 if __name__ == '__main__':
     app.debug = True  # set to False in production mode
