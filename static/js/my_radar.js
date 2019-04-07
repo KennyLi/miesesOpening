@@ -283,7 +283,6 @@ var hard_coded_update = () => {
 d3.select("button").on("click", hard_coded_update);
 
 
-//jason's updates:
 var dropdown = document.getElementById("dropdown");
 dropdown.addEventListener('change', (event) => {
     type = dropdown.options[dropdown.selectedIndex].value;
