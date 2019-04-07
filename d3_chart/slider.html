@@ -1,32 +1,17 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>Radar chart</title>
-    <script src="http://d3js.org/d3.v5.min.js"></script>
-  <!--
-  <script src="https://unpkg.com/d3-simple-slider@1.4.2/dist/d3-simple-slider"></script>
--->
-  <style>
-		body {
-		  overflow: hidden;
-		  margin: 0;
-		  font-size: 14px;
-		  font-family: "Helvetica Neue", Helvetica;
-		}
+<head>
+  <title>range slider</title>
 
-		#chart {
-		  position: absolute;
-		  top: 50px;
-		  left: 100px;
-		}
-	</style>
-  </head>
-  <body>
-    <p id="value-range"></p>
-    <div id="slider-range"></p>
-	  <div id="chart"></div>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://unpkg.com/d3-simple-slider"></script>
+
+</head>
+<body>
+  <h2>Range</h2>
+    <div class="row align-items-center" id="thing">
+      <div class="col-sm-2"><p id="value-range"></p></div>
+      <div class="col-sm"><div id="slider-range"></div></div>
+    </div>
+
 		<script src="slider.js"></script>
-
-  </body>
-</html>
+</body>
