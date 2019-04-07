@@ -1,35 +1,27 @@
-var hp, atk, def, speed, special_defense, special_attack;
-hp, atk, def, speed, special_defense, special_attack = 100;
-
-var d = [
-	{ axis: "HP", value: hp },
-	{ axis: "Atk", value: atk },
-	{ axis: "Def", value: def },
-	{ axis: "Speed", value: speed },
-	{ axis: "Sp Def", value: special_defense },
-	{ axis: "Sp Atk", value: special_attack }
+var upperHP, upperATK, upperDEF, upperSPE, upperSPD, upperSPA;
+var lowerHP, lowerATK, lowerDEF, lowerSPE, lowerSPD, lowerSPA;
+upperHP = 200, upperATK = 200, upperDEF = 200, upperSPE = 200, upperSPD = 200, upperSPA = 200;
+lowerHP = 100, lowerATK = 100, lowerDEF = 100, lowerSPE = 100, lowerSPD = 100, lowerSPA = 100;
+var upper = [
+	{ axis: "HP", value: upperHP },
+	{ axis: "Atk", value: upperATK },
+	{ axis: "Def", value: upperDEF },
+	{ axis: "Speed", value: upperSPE },
+	{ axis: "SpDef", value: upperSPD },
+	{ axis: "SpAtk", value: upperSPA }
 ]
 
-var promise = new Promise( function( resolve, reject) {
-
-    $.get( "/muh_api/", {"type": "Fire"} )
-        .done( function(response) {
-            resolve(response);
-        })
-        .fail( function() {
-            reject();
-        });
-})
-
-promise.then(function(result) {
-    console.log(result); // show JSON
-}, function(err) {
-    console.log(err);
-});
-
+var lower = [
+	{ axis: "HP", value: lowerHP },
+	{ axis: "Atk", value: lowerATK },
+	{ axis: "Def", value: lowerDEF },
+	{ axis: "Speed", value: lowerSPE },
+	{ axis: "SpDef", value: lowerSPD },
+	{ axis: "SpAtk", value: lowerSPA }
+]
 
 var RadarChart = {
-	draw: function (id, d) {
+	draw: function (id, lower, upper) {
 		var cfg = {
 			radius: 5,
 			w: 500,
@@ -49,17 +41,11 @@ var RadarChart = {
 			maxValue: 300
 		};
 
-		var allAxis = (d.map(function (i, j) { return i.axis }));
+		var allAxis = (lower.map(function (i, j) { return i.axis }));
 		var total = allAxis.length;
 		var radius = cfg.factor * Math.min(cfg.w / 2, cfg.h / 2);
 		var Format = d3.format('');
-
-		var svg = d3.select(id).select('svg'),
-			polyPoints = null;
-		if (svg.node()) {
-			polyPoints = svg.select("polygon").attr("points");
-			svg.remove();
-		}
+		d3.select(id).select("svg").remove();
 
 		var g = d3.select(id)
 			.append("svg")
@@ -93,8 +79,8 @@ var RadarChart = {
 				.data([1]) //dummy data
 				.enter()
 				.append("svg:text")
-				.attr("x", function (d) { return levelFactor * (1 - cfg.factor * Math.sin(0)); })
-				.attr("y", function (d) { return levelFactor * (1 - cfg.factor * Math.cos(0)); })
+				.attr("x", function (lower) { return levelFactor * (1 - cfg.factor * Math.sin(0)); })
+				.attr("y", function (lower) { return levelFactor * (1 - cfg.factor * Math.cos(0)); })
 				.style("font-family", "sans-serif")
 				.style("font-size", "10px")
 				.attr("transform", "translate(" + (cfg.w / 2 - levelFactor + cfg.ToRight) + ", " + (cfg.h / 2 - levelFactor) + ")")
@@ -110,25 +96,25 @@ var RadarChart = {
 		axis.append("line")
 			.attr("x1", cfg.w / 2)
 			.attr("y1", cfg.h / 2)
-			.attr("x2", function (d, i) { return cfg.w / 2 * (1 - cfg.factor * Math.sin(i * cfg.radians / total)); })
-			.attr("y2", function (d, i) { return cfg.h / 2 * (1 - cfg.factor * Math.cos(i * cfg.radians / total)); })
+			.attr("x2", function (lower, i) { return cfg.w / 2 * (1 - cfg.factor * Math.sin(i * cfg.radians / total)); })
+			.attr("y2", function (lower, i) { return cfg.h / 2 * (1 - cfg.factor * Math.cos(i * cfg.radians / total)); })
 			.style("stroke", "grey")
 			.style("stroke-width", "1px");
 
 		axis.append("text")
-			.text(function (d) { return d })
+			.text(function (lower) { return lower })
 			.style("font-family", "sans-serif")
 			.style("font-size", "11px")
 			.attr("text-anchor", "middle")
 			.attr("dy", "1.5em")
-			.attr("transform", function (d, i) { return "translate(0, -10)" })
-			.attr("x", function (d, i) { return cfg.w / 2 * (1 - cfg.factorLegend * Math.sin(i * cfg.radians / total)) - 60 * Math.sin(i * cfg.radians / total); })
-			.attr("y", function (d, i) { return cfg.h / 2 * (1 - Math.cos(i * cfg.radians / total)) - 20 * Math.cos(i * cfg.radians / total); });
+			.attr("transform", function (lower, i) { return "translate(0, -10)" })
+			.attr("x", function (lower, i) { return cfg.w / 2 * (1 - cfg.factorLegend * Math.sin(i * cfg.radians / total)) - 60 * Math.sin(i * cfg.radians / total); })
+			.attr("y", function (lower, i) { return cfg.h / 2 * (1 - Math.cos(i * cfg.radians / total)) - 20 * Math.cos(i * cfg.radians / total); });
 
 
 		dataValues = [];
 		g.selectAll(".nodes")
-			.data(d, function (j, i) {
+			.data(lower, function (j, i) {
 				dataValues.push([
 					cfg.w / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total)),
 					cfg.h / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total))
@@ -140,87 +126,64 @@ var RadarChart = {
 			.append("polygon")
 			.style("stroke-width", "2px")
 			.style("stroke", cfg.color(0))
-			.attr("points", function (d) {
-				if (polyPoints)
-					return polyPoints;
-				else
-					return d3.range(d.length).map(function () {
-						return (cfg.w / 2) + "," + (cfg.h / 2)
-					}).join(" ");
-			})
-			.style("fill-opacity", cfg.opacityArea)
-			.style("fill", function (j, i) { return cfg.color(0) })
-
-			.transition()
-			.duration(2000)
-			.attr("points", function (d) {
+			.attr("points", function (lower) {
 				var str = "";
-				for (var pti = 0; pti < d.length; pti++) {
-					str = str + d[pti][0] + "," + d[pti][1] + " ";
+				for (var pti = 0; pti < lower.length; pti++) {
+					str = str + lower[pti][0] + "," + lower[pti][1] + " ";
 				}
 				return str;
 			})
+			.style("fill-opacity", 0.3)
 
-
-		g.selectAll(".nodes")
-			.data(d).enter()
-			.append("circle")
-			.attr('r', cfg.radius)
-			.attr("cx", function (j, i) {
-				dataValues.push([
-					cfg.w / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total)),
-					cfg.h / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total))
-				]);
-				return cfg.w / 2 * (1 - (Math.max(j.value, 0) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total));
-			})
-			.attr("cy", function (j, i) {
-				return cfg.h / 2 * (1 - (Math.max(j.value, 0) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total));
-			})
-			.style("fill", cfg.color(0))
-			.style("fill-opacity", 0)
-
-			.transition()
-			.delay(1750)
-			.duration(100)
-			.style("fill-opacity", 0.9);
+			dataValues = [];
+			g.selectAll(".nodes")
+				.data(upper, function (j, i) {
+					dataValues.push([
+						cfg.w / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total)),
+						cfg.h / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total))
+					]);
+				});
+			g.selectAll(".area")
+				.data([dataValues])
+				.enter()
+				.append("polygon")
+				.style("stroke-width", "2px")
+				.style("stroke", cfg.color(0))
+				.attr("points", function (upper) {
+					var str = "";
+					for (var pti = 0; pti < upper.length; pti++) {
+						str = str + upper[pti][0] + "," + upper[pti][1] + " ";
+					}
+					return str;
+				})
+				.style("fill-opacity", cfg.opacityArea)
+				.style("fill", function (j, i) { return cfg.color(0) })
 	}
 };
 
 
 function update() {
-	data = [
-		{ axis: "HP", value: 153 },
-		{ axis: "Atk", value: 25 },
-		{ axis: "Def", value: 46 },
-		{ axis: "Speed", value: 56 },
-		{ axis: "Sp Def", value: 103 },
-		{ axis: "Sp Atk", value: 177 }
-	]
-	RadarChart.draw("#chart", data)
+	RadarChart.draw("#chart", lower, upper)
 };
 
 d3.select("button").on("click", update);
 
-RadarChart.draw("#chart", d);
+RadarChart.draw("#chart", lower, upper);
 
 
-// Range
-var axes = ['atk','def','spatk','spdef','hp','speed'];
-
-for (let i = 0; i < axes.length; i++){
-  ax = d3.select('div#thing')
+for (let i = 0; i < lower.length; i++){
+  ax = d3.select("#slider")
     .append('div')
-    .attr('id',axes[i]);
+    .attr('id',lower[i]["axis"]);
   valdiv = ax.append('div')
-    .attr('class','col-sm-2')
-    .attr('id','value-'+axes[i])
+    .attr('id','value-'+lower[i]["axis"])
   valdiv.append('h')
-    .text(axes[i])
+    .text(lower[i]["axis"])
   valdiv.append('p')
-    .attr('id','value-'+axes[i]);
+    .attr('id','value-'+lower[i]["axis"]);
   ax.append('div')
     .attr('class','col-sm')
-    .attr('id','slider-'+axes[i]);
+    .attr('id','slider-'+lower[i]["axis"]);
 
   var sliderRange = d3
     .sliderBottom()
@@ -232,25 +195,25 @@ for (let i = 0; i < axes.length; i++){
     .default([100, 200])
     .fill('#2196f3')
     .on('onchange', val => {
-      d3.select('p#value-'+axes[i]).text(val.map(d3.format('d')).join('-'));
+			d3.select('p#value-'+lower[i]["axis"]).text(val.map(d3.format('d')).join('-'));
+			lower[i]["value"] = val[0]
+			upper[i]["value"] = val[1]
+			update()
     });
 
   var gRange = d3
-    .select('div#slider-'+axes[i])
+    .select('div#slider-'+lower[i]["axis"])
     .append('svg')
     .attr('width', 400)
     .attr('height', 100)
     .attr('x',50)
     .attr('y',50)
-//    .attr('viewBox','0 0 400 100')
-  //  .attr('x',(i < 3) ? 50 : 450)
-  //  .attr('y',500 + 100 * (i % 3))
     .append('g')
     .attr('transform', 'translate(30,30)');
 
   gRange.call(sliderRange);
 
-  d3.select('p#value-'+axes[i]).text(
+  d3.select('p#value-'+lower[i]["axis"]).text(
     sliderRange
       .value()
       .map(d3.format('d'))
