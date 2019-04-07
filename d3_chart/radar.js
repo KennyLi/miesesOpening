@@ -11,7 +11,7 @@ var d = [
 ]
 
 var promise = new Promise( function( resolve, reject) {
-    
+
     $.get( "/muh_api/", {"type": "Fire"} )
         .done( function(response) {
             resolve(response);
@@ -24,7 +24,7 @@ var promise = new Promise( function( resolve, reject) {
 promise.then(function(result) {
     console.log(result); // show JSON
 }, function(err) {
-    console.log(err); 
+    console.log(err);
 });
 
 
@@ -45,7 +45,7 @@ var RadarChart = {
 			TranslateY: 30,
 			ExtraWidthX: 100,
 			ExtraWidthY: 100,
-			color: d3.scale.category10(),
+			color: d3.scaleOrdinal(d3.schemeCategory10),
 			maxValue: 300
 		};
 
@@ -150,7 +150,7 @@ var RadarChart = {
 			})
 			.style("fill-opacity", cfg.opacityArea)
 			.style("fill", function (j, i) { return cfg.color(0) })
-			
+
 			.transition()
 			.duration(2000)
 			.attr("points", function (d) {
@@ -160,7 +160,7 @@ var RadarChart = {
 				}
 				return str;
 			})
-			
+
 
 		g.selectAll(".nodes")
 			.data(d).enter()

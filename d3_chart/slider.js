@@ -141,7 +141,7 @@ var RadarChart = {
 			.style("fill-opacity", 0.9)
 		}
 };
-
+/*
 data = [1,2,3,4,200,0]
 var sliderRange = d3.sliderBottom()
 	.min(d3.min(data))
@@ -172,3 +172,93 @@ d3.select('p#value-range').text(
 		.join('-')
 );
 RadarChart.draw("#chart", d);
+*/
+
+var slider = function(w,h,x,y){
+	var svg = d3.select("body")
+		.append("svg")
+		.attr("width",w)
+		.attr("height",h)
+		.attr("pointer-events","bounding-box");
+	var inbox = false;
+	var rect = svg.append("g")
+		.append("svg:rect")
+		.attr("x",0)
+		.attr("y",0)
+		.attr("width","100%")
+		.attr("height","100%")
+		.attr("fill","none")
+		.attr("pointer-events","fill")
+		.on("mousedown",function(){inbox=true;console.log("boxdown")})
+		.on("mouseover",function(){
+			if (clicked){
+				console.log("boxover")
+				inbox = true;
+			}
+		})
+		.on("mouseup",function(){
+			inbox=false;
+			console.log("boxon");
+			if (clicked){
+				console.log("inboxout");
+				clicked = false;
+			}
+		});
+
+	var stuff = svg.append("g")
+		.attr("transform","translate("+x+","+y+")")
+//		.on("mousedown",function(){inbox=true;console.log("hey")});
+
+	var scale = d3.scaleLinear()
+		.domain([0,260])
+		.range([0,260]);
+
+	var axis = stuff.append("g")
+		.call(d3.axisBottom(scale));
+
+	var clicked = false;
+	move = 0;
+	stuff.selectAll("dots")
+		.data([100,200])
+		.enter().append("svg:circle")
+		.attr("cy",function(d){return 0;})
+		.attr("cx",function(d){return scale(d);})
+		.attr("r",20)
+		.attr("fill","white")
+		.attr("pointer-events","none");
+		/*
+		.on("mousedown",function(e){
+		//	d3.select(this)
+			//	.attr("cx",)
+			clicked = true;
+			inbox = true;
+			click(e,this);
+		})
+		.on("mouseup",function(e){
+			move = e.offsetX;
+			console.log(move);
+			clicked=false;
+		})
+		.on("mouseout",function(e){
+			console.log("mouseout")
+			if (inbox){
+				console.log("inmouseout")
+				click(e,this)
+			}
+			else{
+				clicked=false;
+			}
+		});*/
+	var click = function(e,circ){
+		if (clicked){
+			d3.select(circ)
+				.attr("cx",e)
+			setTimeout(function(){
+				click(e,circ)
+			},100);
+		}
+	};
+
+};
+
+slider(500,500,100,100)
