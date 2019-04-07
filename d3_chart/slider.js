@@ -5,10 +5,12 @@ for (let i = 0; i < axes.length; i++){
   ax = d3.select('div#thing')
     .append('div')
     .attr('id',axes[i]);
-  ax.append('div')
+  valdiv = ax.append('div')
     .attr('class','col-sm-2')
     .attr('id','value-'+axes[i])
-    .append('p')
+  valdiv.append('h')
+    .text(axes[i])
+  valdiv.append('p')
     .attr('id','value-'+axes[i]);
   ax.append('div')
     .attr('class','col-sm')
@@ -30,10 +32,10 @@ for (let i = 0; i < axes.length; i++){
   var gRange = d3
     .select('div#slider-'+axes[i])
     .append('svg')
-    .attr('width', 500)
+    .attr('width', 400)
     .attr('height', 100)
-    .attr('x',0)
-    .attr('y',100*i)
+    .attr('x',(i < 3) ? 50 : 450)
+    .attr('y',500 + 100 * (i % 3))
     .append('g')
     .attr('transform', 'translate(30,30)');
 
