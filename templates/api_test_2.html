@@ -1,13 +1,13 @@
 {% extends "awesome.html" %}
 {% block body %}
-{#    <label>TYPES:#}
-{#        <select id="dropdown" name="wee">#}
-{#            <option value="Fire">fire</option>#}
-{#            <option value="Water">water</option>#}
-{#            <option value="Grass">grass</option>#}
-{#        </select>#}
-{#    </label>#}
-    <button id = "do">CLICK</button>
+    {#    <label>TYPES:#}
+    {#        <select id="dropdown" name="wee">#}
+    {#            <option value="Fire">fire</option>#}
+    {#            <option value="Water">water</option>#}
+    {#            <option value="Grass">grass</option>#}
+    {#        </select>#}
+    {#    </label>#}
+    <button id="do">CLICK</button>
     <div id="div"></div>
     <div id="div2"></div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -17,35 +17,69 @@
         var btn = document.getElementById("do");
         var url = "/api_stats/";
         {#"HP": None, "Attack": None, "Defense": None, "Sp Attack": None, "Sp Defense": None, "Speed": None,#}
+
+        function mkjson(min0, max0, min1, max1, min2, max2, min3, max3, min4, max4, min5, max5) {
+            return {
+                "HP": {
+                    "min": min0,
+                    "max": max0
+                },
+                "Attack": {
+                    "min": min1,
+                    "max": max1
+                },
+                "Defense": {
+                    "min": min2,
+                    "max": max2
+                },
+                "Sp Attack": {
+                    "min": min3,
+                    "max": max3
+                },
+                "Sp Defense": {
+                    "min": min4,
+                    "max": max4
+                },
+                "Speed": {
+                    "min": min5,
+                    "max": max5
+                }
+
+            };
+        }
+
         var men = {
             "HP": {
-                "min":150,
-                "max":200
+                "min": 150,
+                "max": 200
             },
             "Attack": {
-                "min":20,
-                "max":200
+                "min": 20,
+                "max": 200
             },
             "Defense": {
-                "min":20,
-                "max":200
+                "min": 20,
+                "max": 200
             },
             "Sp Attack": {
-                "min":20,
-                "max":200
+                "min": 20,
+                "max": 200
             },
             "Sp Defense": {
-                "min":20,
-                "max":200
+                "min": 20,
+                "max": 200
             },
             "Speed": {
-                "min":20,
-                "max":30
+                "min": 20,
+                "max": 30
             }
 
         };
+
+        men = mkjson(150,200,20,200,20,200,20,200,20,200,20,30);
+
         function hello() {
-            $.get(url, {"stats_json":JSON.stringify(men)})
+            $.get(url, {"stats_json": JSON.stringify(men)})
                 .done(function (response) {
                     console.log(response);
                     var pklist = JSON.parse(response)["hello"];
