@@ -298,16 +298,6 @@ var update_graph = (type) => {
 
 }
 
-//update_graph("Grass"); // will show this graph when first load page
-
-
-var hard_coded_update = () => {
-    update_graph("Ground");
-}
-
-d3.select("button").on("click", hard_coded_update);
-
-
 var dropdown = document.getElementById("dropdown");
 dropdown.addEventListener('change', (event) => {
     type = dropdown.options[dropdown.selectedIndex].value;
@@ -318,9 +308,3 @@ dropdown.addEventListener('change', (event) => {
 
 type = dropdown.options[dropdown.selectedIndex].value;
 update_graph(type);
-
-
-// TODO change hard_coded_update
-//      to a more dynamic update
-//      that takes detects change of value of the dropdown menu
-//      and changes the graph to the selected type
