@@ -39,8 +39,6 @@ def ahhhh():
 
 @app.route("/")
 def hello_world():
-    if db_pointer is not None:
-        return render_template("land.html", pointed=True)
     return render_template("land.html")
 
 @app.route("/muh_api/", methods=["GET"])
@@ -85,63 +83,6 @@ def test():
 @app.route('/radar_demo')
 def radar_demo():
     return render_template('radar.html')
-
-
-
-
-
-
-
-
-
-#pretty useless
-
-@app.route("/auth", methods=['POST'])
-def auth():
-    try:
-        maxSevSelDelay = 2
-        connection = pymongo.MongoClient(request.form['droplet'],
-                                     serverSelectionTimeoutMS=maxSevSelDelay)
-        connection.server_info()
-        db = connection.test
-        global db_pointer
-        db_pointer = db
-        print(db_pointer)
-        print("DFSFDSFDSF")
-        setup.setup(db)
-        flash("droplet tested and set up")
-        return redirect(url_for("search", category="success", flash=True), code=307)
-    except Exception as e:
-        print(e)
-        db_pointer = None
-        flash("droplet tested and not working")
-        #print("DSFJDSKFJLKDFJKLSDJFKLSJDKLFDSKLFJKDSLFJDLKSFJKLDSFJLKSJFLK")
-        return render_template("land.html", category="error", flash=True)
-
-@app.route("/search", methods=['POST', "GET"])
-def search():
-    # print(db_pointer)
-    return render_template("search_form.html", category=request.args.get('category'), flash=request.args.get('flash'))
-
-
-@app.route("/doit", methods=['POST', "GET"])
-def doit():
-    # POSSIBLE ARGS: num, name, type, height, height_updown, weight, weight_updown, weaknesses, evolutions
-    args = {"id": None, "name": None, "type": None,
-            "HP": None, "Attack": None, "Defense": None, "Sp Attack": None, "Sp Defense": None, "Speed": None,
-            "abilities": None,} #"sprite": None,"height": None,"weight": None}
-    for k in args:
-        hey = request.form[k]
-        if hey.strip() != '':
-            args[k] = hey
-
-    # print(db_pointer)
-    results = finder.find_pokemans_dict(db_pointer, args)
-    pk_list = [k for k in results]
-    print("-----")
-    print(pk_list)
-    print("-----")
-    return render_template("display.html", pklist=dumps(pk_list))
 
 @app.route("/find_avg", methods=['POST', "GET"])
 def testy():
