@@ -94,10 +94,39 @@ var get_pokemon = (json) => {
             var p = document.createElement('p');
             p.style.color = colors[ results[i]['type'][0] ];
             p.innerHTML = results[i]['name'];
+            var id = document.createElement('small');
+            id.innerHTML = results[i]['id'];
+            id.id = "id";
             var image = document.createElement('img');
             image.src = results[i]['sprite'];
-            div.appendChild(image)
+            var hp = results[i]['HP'];
+            var att = results[i]['Attack'];
+            var def = results[i]['Defense'];
+            var spd = results[i]['Speed'];
+            var sp_att = results[i]['Sp Attack'];
+            var sp_def = results[i]['Sp Defense'];
+            var text0 = document.createElement('small');
+            text0.innerHTML = "HP: " + hp;
+            var text1 = document.createElement('small');
+            text1.innerHTML = "Attack: " + att;
+            var text2 = document.createElement('small');
+            text2.innerHTML = "Defense: " + def;
+            var text3 = document.createElement('small');
+            text3.innerHTML = "Speed: " + spd;
+            var text4 = document.createElement('small');
+            text4.innerHTML = "Sp Atk: " + sp_att;
+            var text5 = document.createElement('small');
+            text5.innerHTML = "Sp Def: " + sp_def;
+            div.appendChild(image);
             div.appendChild(p);
+            div.appendChild(id);
+            div.appendChild( document.createElement('br') );
+            div.appendChild(text0);
+            div.appendChild(text1);
+            div.appendChild(text2);
+            div.appendChild(text3);
+            div.appendChild(text4);
+            div.appendChild(text5);
             table.appendChild(div);
         }
     }, function (err) {

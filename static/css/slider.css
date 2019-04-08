@@ -1,17 +1,32 @@
 .column {
     float: left;
     width: 50%;
-    }
-  
+}
+
 /* Clear floats after the columns */
 .row:after {
     content: "";
     display: table;
     clear: both;
-    }
+}
 
 /* div#slider { */
 /*     overflow: scroll; */
 /*     height: 500px; */
 /*     width: 500px; */
 /* } */
+
+.backrect {
+    position: absolute;
+    height: 60px;
+    width: 110px;
+    /* border-color: blue; */
+    /* background-color: cyan; */
+    left: 15px;
+    top: 15px;
+    z-index: 9999;
+}
+
+#chart {
+    z-index: -9999;
+}

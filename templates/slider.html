@@ -8,11 +8,18 @@ Pokemon Range Look Up
 <link rel="stylesheet" href="/static/css/slider.css">
 <style>
   #results > div  > * {
-      display: inline;
+      display: inline-block;
+  }
+  #results > div > small {
+      padding-right: 14px;
   }
   #legend > * {
       display: inline;
       padding: 5px;
+  }
+  #id {
+      padding-left: 5px;
+      color: grey;
   }
 </style>
 {% endblock %}
@@ -20,6 +27,9 @@ Pokemon Range Look Up
 {% block content %}
 <div id="container" style="padding: 15px;">
   <div class="row">
+    <div class="backrect">
+      <a class="btn btn-outline-info" href="/" role="button">Search average stats by type</a>
+    </div>
     <div class="col" id="chart"></div>
     <div class="col" id="slider"></div>
     <div class="col">
@@ -27,7 +37,7 @@ Pokemon Range Look Up
       <div id="legend" style="border: 1px dashed black; padding:5px; width: 500px;">
         <p style="color: rgb(168, 168, 120);">Normal</p><p style="color: rgb(192, 48, 39);">Fighting</p><p style="color: rgb(168, 144, 240);">Flying</p><p style="color: rgb(160, 64, 160);">Poison</p><p style="color: rgb(224, 192, 104);">Ground</p><p style="color: rgb(183, 160, 55);">Rock</p><p style="color: rgb(167, 184, 32);">Bug</p><p style="color: rgb(112, 88, 152);">Ghost</p><p style="color: rgb(184, 183, 208);">Steel</p><br><p style="color: rgb(240, 128, 48);">Fire</p><p style="color: rgb(105, 144, 240);">Water</p><p style="color: rgb(120, 200, 80);">Grass</p><p style="color: rgb(248, 207, 48);">Electric</p><p style="color: rgb(248, 88, 136);">Psychic</p><p style="color: rgb(152, 216, 216);">Ice</p><p style="color: rgb(113, 55, 248);">Dragon</p><p style="color: rgb(113, 88, 72);">Dark</p><p style="color: rgb(238, 153, 172);">Fairy</p>
       </div>
-      <div id="results" style="height:700px; width: 500px; overflow:scroll;border:1px dashed black;padding: 5px; padding-right: 10px;"></div>
+      <div id="results" style="height:700px; width: 500px; overflow-x:scroll;overflow-y: scroll;border:1px dashed black;padding: 5px; padding-right: 10px;"></div>
     </div>
   </div>
 </div>
