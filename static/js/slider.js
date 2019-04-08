@@ -20,6 +20,64 @@ var lower = [
 	{ axis: "SpAtk", value: lowerSPA }
 ]
 
+
+var mkjson = (min0, max0, min1, max1, min2, max2, min3, max3, min4, max4, min5, max5) => {
+    return {
+        "HP": {
+            "min": min0,
+            "max": max0
+        },
+        "Attack": {
+            "min": min1,
+            "max": max1
+        },
+        "Defense": {
+            "min": min2,
+            "max": max2
+        },
+        "Sp Attack": {
+            "min": min3,
+            "max": max3
+        },
+        "Sp Defense": {
+            "min": min4,
+            "max": max4
+        },
+        "Speed": {
+            "min": min5,
+            "max": max5
+        }
+
+    };
+}
+
+
+var get_pokemon = (json) => {
+    var promise = new Promise (function (resolve, reject) {
+        $.get( "/api_stats/", {"stats_json": JSON.stringify(json)} )
+            .done (function (response) {
+                resolve(response);
+            })
+            .fail (function() {
+                reject();
+            });
+    });
+
+    promise.then( function(result) {
+        var results = JSON.parse(result)['hello'];
+        var table = document.getElementById('results');
+        table.innerHTML = ""; // clear
+        for (var i = 0; i < results.length; i++) {
+            var entry = document.createElement('p');
+            entry.innerHTML = results[i]['name'];
+            table.appendChild(entry);
+        }
+    }, function (err) {
+        console.log(err);
+    });
+}
+
+
 var detectChange = () => {
     console.log("change in slider detected");
     var HP_hi = upper[0]['value'];
@@ -35,12 +93,9 @@ var detectChange = () => {
     var SPATK_hi = upper[5]['value'];
     var SPATK_lo = lower[5]['value'];
 
-    console.log(HP_lo, HP_hi);
-    console.log(ATK_lo, ATK_hi);
-    console.log(DEF_lo, DEF_hi);
-    console.log(SPD_lo, SPD_hi);
-    console.log(SPDEF_lo, SPDEF_hi);
-    console.log(SPATK_lo, SPATK_hi);
+    my_json = mkjson(HP_lo, HP_hi, ATK_lo, ATK_hi, DEF_lo, DEF_hi, SPATK_lo, SPATK_hi, SPDEF_lo, SPDEF_hi, SPD_lo, SPD_hi);
+
+    get_pokemon(my_json);
 }
 
 var RadarChart = {
