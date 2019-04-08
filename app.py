@@ -29,6 +29,9 @@ connection.server_info()
 db = connection.test
 db_pointer = db
 
+@app.route("/slider-test")
+def asdas():
+    return render_template("slider.html")
 
 @app.route("/rymd-test")
 def ahhhh():
