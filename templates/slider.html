@@ -11,10 +11,11 @@ Pokemon Range Look Up
 {% block content %}
 <div id="container">
   <div class="row">
-    <div class="col" id="chart"></div>
-    <div class="col" id="slider"></div>
-    <div class="col" id="results">
+    <div class="col-md-5" id="chart"></div>
+    <div class="col-md-4" id="slider"></div>
+    <div class="col-md-3">
       <p>Play with the sliders and see which Pokemon matches your ranges!</p>
+      <div id="results" style="height:400px;overflow:scroll"></div>
     </div>
   </div>
 </div>
@@ -30,4 +31,3 @@ Pokemon Range Look Up
 <script src="https://unpkg.com/d3-simple-slider"></script>
 <script src="/static/js/slider.js"></script>
 {% endblock %}
-

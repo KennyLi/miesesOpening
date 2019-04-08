@@ -4,7 +4,7 @@ import pymongo
 
 from os import urandom
 
-import util.util_stuff.find as finder
+import util.find as finder
 
 app = Flask(__name__)
 app.secret_key = urandom(32)

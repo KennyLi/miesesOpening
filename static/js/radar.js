@@ -252,8 +252,8 @@ var update_graph = (type) => {
                             .append("text")
                             .text(j["axis"] + ": " + Math.round(j["value"] * 100) / 100)
                             .attr("text-anchor","middle")
-                            .attr("x", 330)
-                            .attr("y", 600)
+                            .attr("x", d3.event.pageX - cfg.TranslateX)// + 40)
+                            .attr("y", d3.event.pageY - cfg.TranslateY)
                             .attr("id", "value")
                     })
                     .on('mouseout', function () {
