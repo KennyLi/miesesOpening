@@ -68,9 +68,15 @@ var get_pokemon = (json) => {
         var table = document.getElementById('results');
         table.innerHTML = ""; // clear
         for (var i = 0; i < results.length; i++) {
-            var entry = document.createElement('p');
-            entry.innerHTML = results[i]['name'];
-            table.appendChild(entry);
+            // console.log(results[i]);
+            var div = document.createElement('div');
+            var p = document.createElement('p');
+            p.innerHTML = results[i]['name'];
+            var image = document.createElement('img')
+            image.src = results[i]['sprite'];
+            div.appendChild(image)
+            div.appendChild(p);
+            table.appendChild(div);
         }
     }, function (err) {
         console.log(err);
