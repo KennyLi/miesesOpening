@@ -75,9 +75,21 @@ kennyL -- 2019-04-05 00:48
 - removed test files
 ==============================================================
 
+raymondW -- 2019-04-06 14:08
+--------------------------------------------------------------
++ added route for radar chart
++ added GET request with a Promise gets data from json returned from API
++ parsed JSON response: gather avg of all stats for specified type
+==============================================================
+
 jasonT -- 2019-04-06 15:11
 --------------------------------------------------------------
 + hooked up the dropdown to the graph
+==============================================================
+
+raymondW -- 2019-04-07 00:16
+--------------------------------------------------------------
++ detect change on dropdown menu, update chart on dropdown change
 ==============================================================
 
 mohammedU -- 2019-04-07 14:55
@@ -88,6 +100,13 @@ mohammedU -- 2019-04-07 14:55
 mohammedU -- 2019-04-07 17:00
 --------------------------------------------------------------
 + added basic sliders
+==============================================================
+
+raymondW -- 2019-04-07 20:27
+--------------------------------------------------------------
++ added route for slider graph
++ detect change on d3 sliders
++ return value from d3 sliders, prime&prepare for connection with API
 ==============================================================
 
 kennyL -- 2019-04-07 20:23
@@ -101,6 +120,11 @@ jasonT -- 2019-04-07 22:22
 + added api to give pkmon based on ranges
 ==============================================================
 
+raymondW -- 2019-04-07 23:35
+--------------------------------------------------------------
++ added functionality to show Pokemon names based on ranges defined by sliders
+==============================================================
+
 kennyL -- 2019-04-08 00:24
 --------------------------------------------------------------
 + added eventlistener for hovering on data point
@@ -110,8 +134,15 @@ kennyL -- 2019-04-08 00:24
 - deleted unnecessary files
 ==============================================================
 
-mohammedU -- 2019-04-08 2:00
+mohammedU -- 2019-04-08 02:00
 --------------------------------------------------------------
 + added tooltips
 + scroll box for filtered pokemon
+==============================================================
+
+raymondW -- 2019-04-08 14:50
+--------------------------------------------------------------
++ added images to slider defined results
++ add legend to slider results and color code names by type
++ add HP, attack, defense, speed, special attack, special defense, Pokemon ID to slider results
 ==============================================================
