@@ -51,6 +51,27 @@ var mkjson = (min0, max0, min1, max1, min2, max2, min3, max3, min4, max4, min5, 
     };
 }
 
+var colors = {
+  Normal:"#a8a878",
+  Fighting:"#c03027",
+  Flying:"#a890f0",
+  Poison:"#a040a0",
+  Ground:"#e0c068",
+  Rock:"#b7a037",
+  Bug:"#a7b820",
+  Ghost:"#705898",
+  Steel:"#b8b7d0",
+  Fire:"#f08030",
+  Water:"#6990f0",
+  Grass:"#78c850",
+  Electric:"#f8cf30",
+  Psychic:"#f85888",
+  Ice:"#98d8d8",
+  Dragon:"#7137f8",
+  Dark:"#715848",
+  Fairy:"#ee99ac"
+};
+
 
 var get_pokemon = (json) => {
     var promise = new Promise (function (resolve, reject) {
@@ -68,11 +89,12 @@ var get_pokemon = (json) => {
         var table = document.getElementById('results');
         table.innerHTML = ""; // clear
         for (var i = 0; i < results.length; i++) {
-            // console.log(results[i]);
+            console.log(results[i]);
             var div = document.createElement('div');
             var p = document.createElement('p');
+            p.style.color = colors[ results[i]['type'][0] ];
             p.innerHTML = results[i]['name'];
-            var image = document.createElement('img')
+            var image = document.createElement('img');
             image.src = results[i]['sprite'];
             div.appendChild(image)
             div.appendChild(p);
