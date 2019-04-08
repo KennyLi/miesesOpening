@@ -303,7 +303,7 @@ dropdown.addEventListener('change', (event) => {
     type = dropdown.options[dropdown.selectedIndex].value;
     update_graph(type);
     d3.select("div#titlething")
-      .text("Average stats for "+type+" types")
+      .text("Average Stats for "+type+" Types")
 });
 
 type = dropdown.options[dropdown.selectedIndex].value;

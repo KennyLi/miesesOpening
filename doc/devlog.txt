@@ -101,5 +101,6 @@ kennyL -- 2019-04-08 00:24
 + added eventlistener for hovering on data point
 + rerouted html to root route
 + renamed files for clarity
+- moved inline styling to external sheet
 - deleted unnecessary files
 ==============================================================
