@@ -48,9 +48,22 @@ def muh_api():
     pk_type = request.args['type']
     return dumps({"hello":[k for k in finder.find_pokemans(db_pointer, type=pk_type)]})
 
+@app.route("/api_stats/", methods=["GET"])
+def api_stats():
+    #stats = ['HP', 'Attack', 'Defense', 'Sp Attack', 'Sp Defense', 'Speed']
+    stats_json = json.loads(request.args['stats_json'])
+    print("LLLLLLLLL")
+    print(stats_json)
+    return dumps({"hello":[k for k in finder.find_pokemans_between(db_pointer, stats_json)]})
+
 @app.route("/chilling")
 def chilling():
     return render_template("chilling.html")
+
+
+@app.route("/api_test_2")
+def api_test_2():
+    return render_template("api_test_2.html")
 
 # THIS IS YOUR STUFF!
 

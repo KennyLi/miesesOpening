@@ -26,6 +26,32 @@ import pymongo
 # for k in connection.find({}):
 #     print(k)
 
+def find_pokemans_between(db, json_stats):
+    connection = db.miesesgang
+    find_query = {"$and":[]}
+    stats = ['HP', 'Attack', 'Defense', 'Sp Attack', 'Sp Defense', 'Speed']
+    for k in stats:
+        json_stat = json_stats[k]
+        print("epic fail")
+        print(json_stat)
+        min = json_stat["min"]
+        max = json_stat["max"]
+        find_query["$and"].append({"$and": [
+            {k:
+                {
+                    "$lte": max
+                }
+            },
+            {k:
+                {
+                    "$gte": min
+                }
+            }
+        ]})
+    print("HELLO MEN!!")
+    print(find_query)
+    return connection.find(find_query)
+
 
 def find_pokemans_dict(db, kwargs):
     """
@@ -43,7 +69,7 @@ def find_pokemans_dict(db, kwargs):
     find_query = {}
     args = {"id": None, "name": None, "type": None,
             "HP": None, "Attack": None, "Defense": None, "Sp Attack": None, "Sp Defense": None, "Speed": None,
-            "abilities": None, "sprite": None,"height": None,"weight": None}
+            "abilities": None, "sprite": None, "height": None, "weight": None}
     for k in args.keys():
         args[k] = kwargs.get(k, None)
         if args[k] is not None:
@@ -74,7 +100,7 @@ def find_pokemans(db, **kwargs):
     find_query = {}
     args = {"id": None, "name": None, "type": None,
             "HP": None, "Attack": None, "Defense": None, "Sp Attack": None, "Sp Defense": None, "Speed": None,
-            "abilities": None, "sprite": None,"height": None,"weight": None}
+            "abilities": None, "sprite": None, "height": None, "weight": None}
     for k in args.keys():
         args[k] = kwargs.get(k, None)
         if args[k] is not None:
@@ -87,7 +113,7 @@ def find_pokemans(db, **kwargs):
             else:
                 find_query[k] = args[k]
     return connection.find(find_query)
-    #tot_str = []
+    # tot_str = []
     # tot_str.append("QUERY:" + str(find_query))
     # tot_str.append("-+-+-")
     # for k in connection.find(find_query):

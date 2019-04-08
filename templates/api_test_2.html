@@ -1,0 +1,70 @@
+{% extends "awesome.html" %}
+{% block body %}
+{#    <label>TYPES:#}
+{#        <select id="dropdown" name="wee">#}
+{#            <option value="Fire">fire</option>#}
+{#            <option value="Water">water</option>#}
+{#            <option value="Grass">grass</option>#}
+{#        </select>#}
+{#    </label>#}
+    <button id = "do">CLICK</button>
+    <div id="div"></div>
+    <div id="div2"></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        var div = document.getElementById("div");
+        var div2 = document.getElementById("div2");
+        var btn = document.getElementById("do");
+        var url = "/api_stats/";
+        {#"HP": None, "Attack": None, "Defense": None, "Sp Attack": None, "Sp Defense": None, "Speed": None,#}
+        var men = {
+            "HP": {
+                "min":150,
+                "max":200
+            },
+            "Attack": {
+                "min":20,
+                "max":200
+            },
+            "Defense": {
+                "min":20,
+                "max":200
+            },
+            "Sp Attack": {
+                "min":20,
+                "max":200
+            },
+            "Sp Defense": {
+                "min":20,
+                "max":200
+            },
+            "Speed": {
+                "min":20,
+                "max":30
+            }
+
+        };
+        function hello() {
+            $.get(url, {"stats_json":JSON.stringify(men)})
+                .done(function (response) {
+                    console.log(response);
+                    var pklist = JSON.parse(response)["hello"];
+                    {#div2.innerHTML = pklist;#}
+                    console.log(typeof(pklist));
+                    div2.innerHTML = "";
+                    for (var i = 0; i < pklist.length; i++) {
+                        div2.innerHTML += pklist[i]["name"] + "<br>\n"
+                    }
+                })
+        }
+
+        btn.addEventListener('click', hello);
+
+        {#dropdown.addEventListener('change', (event) => {#}
+        {#    type = dropdown.options[dropdown.selectedIndex].value;#}
+        {#    div.innerHTML = type;#}
+        {#    hello();#}
+        {#console.log(url);#}
+        //console.log(dataz[0]);
+    </script>
+{% endblock %}
