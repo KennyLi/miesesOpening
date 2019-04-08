@@ -1,6 +1,8 @@
 var hp, atk, def, speed, special_defense, special_attack;
 var d;
 
+console.log('hi');
+
 var types = ['Normal', 'Fighting', 'Flying', 'Poison', 'Ground', 'Rock', 'Bug', 'Ghost', 'Steel', 'Fire', 'Water', 'Grass', 'Electric', 'Psychic', 'Ice', 'Dragon', 'Dark', 'Fairy'];
 
 var update_graph = (type) => {
