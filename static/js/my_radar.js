@@ -1,11 +1,31 @@
+console.log("hello")
 var hp, atk, def, speed, special_defense, special_attack;
 var d;
 
-console.log('hi');
-
 var types = ['Normal', 'Fighting', 'Flying', 'Poison', 'Ground', 'Rock', 'Bug', 'Ghost', 'Steel', 'Fire', 'Water', 'Grass', 'Electric', 'Psychic', 'Ice', 'Dragon', 'Dark', 'Fairy'];
+var colors = {
+  Normal:"aqua",
+  Fighting:"lightsalmon",
+  Flying:"plum",
+  Poison:"mediumpurple",
+  Ground:"brown",
+  Rock:"darkgreen",
+  Bug:"yellowgreen",
+  Ghost:"darkslategray",
+  Steel:"gray",
+  Fire:"red",
+  Water:"blue",
+  Grass:"green",
+  Electric:"yellow",
+  Psychic:"deeppink",
+  Ice:"cyan",
+  Dragon:"purple",
+  Dark:"black",
+  Fairy:"lightpink"
+};
 
 var update_graph = (type) => {
+  console.log(type);
     var promise = new Promise(function (resolve, reject) {
 
         $.get("/muh_api/", {"type": type})
@@ -44,7 +64,7 @@ var update_graph = (type) => {
 
         console.log("axis");
         console.log([hp, atk, def, speed, special_defense, special_attack]);
-
+        console.log(type);
 
         d = [
             {axis: "HP", value: hp},
@@ -73,7 +93,7 @@ var update_graph = (type) => {
                     TranslateY: 30,
                     ExtraWidthX: 100,
                     ExtraWidthY: 100,
-                    color: d3.scale.category10(),
+                  //  color: d3.scale.category10(),
                     maxValue: 120
                 };
 
@@ -194,7 +214,7 @@ var update_graph = (type) => {
                     .enter()
                     .append("polygon")
                     .style("stroke-width", "2px")
-                    .style("stroke", cfg.color(0))
+                    .style("stroke", colors[type])
                     .attr("points", function (d) {
                         if (polyPoints)
                             return polyPoints;
@@ -205,7 +225,7 @@ var update_graph = (type) => {
                     })
                     .style("fill-opacity", cfg.opacityArea)
                     .style("fill", function (j, i) {
-                        return cfg.color(0)
+                        return colors[type]
                     })
 
                     .transition()
@@ -226,7 +246,7 @@ var update_graph = (type) => {
                         d3.select(this)
                             .transition()
                             .duration(500)
-                            .style("fill", cfg.color(0))
+                            .style("fill", colors[type])
                             .style("fill-opacity", .9)
                             .attr('r', cfg.radius * 2)
 
@@ -235,7 +255,7 @@ var update_graph = (type) => {
                         d3.select(this)
                             .transition()
                             .duration(500)
-                            .style("fill", cfg.color(0))
+                            .style("fill", colors[type])
                             .style("fill-opacity", 0.75)
                             .attr('r', cfg.radius)
                     })
@@ -250,7 +270,7 @@ var update_graph = (type) => {
                     .attr("cy", function (j, i) {
                         return cfg.h / 2 * (1 - (Math.max(j.value, 0) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total));
                     })
-                    .style("fill", cfg.color(0))
+                    .style("fill", colors[type])
                     .style("fill-opacity", 0)
                     .transition()
                     .delay(950)
@@ -289,6 +309,8 @@ var dropdown = document.getElementById("dropdown");
 dropdown.addEventListener('change', (event) => {
     type = dropdown.options[dropdown.selectedIndex].value;
     update_graph(type);
+    d3.select("div#titlething")
+      .text("Average stats for "+type+" types")
 });
 
 type = dropdown.options[dropdown.selectedIndex].value;

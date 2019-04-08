@@ -66,15 +66,46 @@ I really hope this works :))
       /*stroke: #000;*/
       stroke-dasharray: 3, 4;
   }
+
+  em {
+    position: absolute;
+    bottom: 10px;
+  }
+
+  .backrect {
+    position: absolute;
+    height: 60px;
+    width: 110px;
+    border: groove;
+    border-color: blue;
+    background-color: cyan;
+    left: 800px;
+    top: 200px;
+  }
+
+  div#titlething{
+    position:absolute;
+    left: 320px;
+    top: 10px;
+  }
+
 </style>
 {% endblock %}
 
 {% block content %}
-<button id="update">Update</button>
+
+<div id="titlething">
+  Average stats for Normal types
+</div>
+
 <div id="chart"></div>
 
 {#    HELLO!!!!#}
-<label>TYPES:
+<!--
+  <button id="update">Update</button>
+-->
+<div class="backrect">
+<label>TYPE:
   <select id="dropdown" name="wee">
     <option value="Normal">Normal</option>
     <option value="Fighting">Fighting</option>
@@ -96,7 +127,7 @@ I really hope this works :))
     <option value="Fairy">Fairy</option>
   </select>
 </label>
-
+</div>
 {% endblock %}
 
 {% block javascript %}
@@ -105,4 +136,3 @@ I really hope this works :))
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 <script src="/static/js/my_radar.js"></script>
 {% endblock %}
-
