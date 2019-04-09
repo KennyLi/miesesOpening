@@ -36,9 +36,11 @@ def muh_api():
 def api_stats():
     #stats = ['HP', 'Attack', 'Defense', 'Sp Attack', 'Sp Defense', 'Speed']
     stats_json = json.loads(request.args['stats_json'])
-    print("LLLLLLLLL")
+    pk_type = request.args['type']
+    print(pk_type)
+    print("FIDSJFLKDSJKFJDSKFJDSLKFJLKJFKDSJFDSJFKDSJFKDJFLKDSJFLDJSLFK")
     print(stats_json)
-    return dumps({"hello":[k for k in finder.find_pokemans_between(db_pointer, stats_json)]})
+    return dumps({"hello":[k for k in finder.find_pokemans_between(db_pointer, stats_json, pk_type)]})
 
 @app.route("/find_avg", methods=['POST', "GET"])
 def testy():

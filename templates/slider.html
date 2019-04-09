@@ -1,55 +1,78 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Pokemon Range Look Up
+    Pokemon Range Look Up
 {% endblock %}
 
 {% block style %}
-<link rel="stylesheet" href="/static/css/slider.css">
-<style>
-  #results > div  > * {
-      display: inline-block;
-  }
-  #results > div > small {
-      padding-right: 14px;
-  }
-  #legend > * {
-      display: inline;
-      padding: 5px;
-  }
-  #id {
-      padding-left: 5px;
-      color: grey;
-  }
-</style>
+    <link rel="stylesheet" href="/static/css/slider.css">
+    <style>
+        #results > div > * {
+            display: inline-block;
+        }
+
+        #results > div > small {
+            padding-right: 14px;
+        }
+
+        #legend > * {
+            display: inline;
+            padding: 5px;
+        }
+
+        #id {
+            padding-left: 5px;
+            color: grey;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
-<div id="container" style="padding: 15px;">
-  <div class="row">
-    <div class="backrect">
-      <a class="btn btn-outline-info" href="/" role="button">Search average stats by type</a>
+    <div id="container" style="padding: 15px;">
+        <div class="row">
+            <div class="backrect">
+                <a class="btn btn-outline-info" href="/" role="button">Search average stats by type</a>
+            </div>
+            <div class="col" id="chart"></div>
+            <div class="col" id="slider"></div>
+            <div class="col">
+                <p>Play with the sliders and see which Pokemon matches your ranges!</p>
+                <div id="legend" style="border: 1px dashed black; padding:5px; width: 500px;">
+                    <span class="type_span"  style="color: rgb(168, 168, 120);">Normal</span>
+                    <span class="type_span"  style="color: rgb(192, 48, 39);">Fighting</span>
+                    <span class="type_span"  style="color: rgb(168, 144, 240);">Flying</span>
+                    <span class="type_span"  style="color: rgb(160, 64, 160);">Poison</span>
+                    <span class="type_span"  style="color: rgb(224, 192, 104);">Ground</span>
+                    <span class="type_span"  style="color: rgb(183, 160, 55);">Rock</span>
+                    <span class="type_span"  style="color: rgb(167, 184, 32);">Bug</span>
+                    <span class="type_span"  style="color: rgb(112, 88, 152);">Ghost</span>
+                    <span class="type_span"  style="color: rgb(184, 183, 208);">Steel</span><br>
+                    <span class="type_span"  style="color: rgb(240, 128, 48);">Fire</span>
+                    <span class="type_span"  style="color: rgb(105, 144, 240);">Water</span>
+                    <span class="type_span"  style="color: rgb(120, 200, 80);">Grass</span>
+                    <span class="type_span"  style="color: rgb(248, 207, 48);">Electric</span>
+                    <span class="type_span"  style="color: rgb(248, 88, 136);">Psychic</span>
+                    <span class="type_span"  style="color: rgb(152, 216, 216);">Ice</span>
+                    <span class="type_span"  style="color: rgb(113, 55, 248);">Dragon</span>
+                    <span class="type_span"  style="color: rgb(113, 88, 72);">Dark</span>
+                    <span class="type_span"  style="color: rgb(238, 153, 172);">Fairy</span>
+                    <span class="type_span"  style="color: rgb(104, 160, 144);">Reset</span>
+                </div>
+                <div id="results"
+                     style="height:700px; width: 500px; overflow-x:scroll;overflow-y: scroll;border:1px dashed black;padding: 5px; padding-right: 10px;"></div>
+            </div>
+        </div>
     </div>
-    <div class="col" id="chart"></div>
-    <div class="col" id="slider"></div>
-    <div class="col">
-      <p>Play with the sliders and see which Pokemon matches your ranges!</p>
-      <div id="legend" style="border: 1px dashed black; padding:5px; width: 500px;">
-        <p style="color: rgb(168, 168, 120);">Normal</p><p style="color: rgb(192, 48, 39);">Fighting</p><p style="color: rgb(168, 144, 240);">Flying</p><p style="color: rgb(160, 64, 160);">Poison</p><p style="color: rgb(224, 192, 104);">Ground</p><p style="color: rgb(183, 160, 55);">Rock</p><p style="color: rgb(167, 184, 32);">Bug</p><p style="color: rgb(112, 88, 152);">Ghost</p><p style="color: rgb(184, 183, 208);">Steel</p><br><p style="color: rgb(240, 128, 48);">Fire</p><p style="color: rgb(105, 144, 240);">Water</p><p style="color: rgb(120, 200, 80);">Grass</p><p style="color: rgb(248, 207, 48);">Electric</p><p style="color: rgb(248, 88, 136);">Psychic</p><p style="color: rgb(152, 216, 216);">Ice</p><p style="color: rgb(113, 55, 248);">Dragon</p><p style="color: rgb(113, 88, 72);">Dark</p><p style="color: rgb(238, 153, 172);">Fairy</p>
-      </div>
-      <div id="results" style="height:700px; width: 500px; overflow-x:scroll;overflow-y: scroll;border:1px dashed black;padding: 5px; padding-right: 10px;"></div>
-    </div>
-  </div>
-</div>
 
 {% endblock %}
 
 {% block javascript %}
-<script
-  src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-<!--  <script src="radar.js"></script>
-  -->
-<script src="https://d3js.org/d3.v5.min.js"></script>
-<script src="https://unpkg.com/d3-simple-slider"></script>
-<script src="/static/js/slider.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <!--  <script src="radar.js"></script>
+      -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
+    <script src="/static/js/slider.js"></script>
 {% endblock %}

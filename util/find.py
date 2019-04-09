@@ -26,14 +26,19 @@ import pymongo
 # for k in connection.find({}):
 #     print(k)
 
-def find_pokemans_between(db, json_stats):
+types = ['Normal', 'Fighting', 'Flying', 'Poison', 'Ground', 'Rock', 'Bug', 'Ghost', 'Steel', 'Fire', 'Water', 'Grass',
+         'Electric', 'Psychic', 'Ice', 'Dragon', 'Dark', 'Fairy']
+
+def find_pokemans_between(db, json_stats, type):
     connection = db.miesesgang
     find_query = {"$and":[]}
+    if type in types:
+        find_query["$and"].append({"type":type})
     stats = ['HP', 'Attack', 'Defense', 'Sp Attack', 'Sp Defense', 'Speed']
     for k in stats:
         json_stat = json_stats[k]
-        print("epic fail")
-        print(json_stat)
+        #print("epic fail")
+        #print(json_stat)
         min = json_stat["min"]
         max = json_stat["max"]
         find_query["$and"].append({"$and": [

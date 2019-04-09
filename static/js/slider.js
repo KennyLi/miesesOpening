@@ -3,21 +3,21 @@ var lowerHP, lowerATK, lowerDEF, lowerSPE, lowerSPD, lowerSPA;
 upperHP = 200, upperATK = 200, upperDEF = 200, upperSPE = 200, upperSPD = 200, upperSPA = 200;
 lowerHP = 100, lowerATK = 100, lowerDEF = 100, lowerSPE = 100, lowerSPD = 100, lowerSPA = 100;
 var upper = [
-	{ axis: "HP", value: upperHP },
-	{ axis: "Atk", value: upperATK },
-	{ axis: "Def", value: upperDEF },
-	{ axis: "Speed", value: upperSPE },
-	{ axis: "SpDef", value: upperSPD },
-	{ axis: "SpAtk", value: upperSPA }
+    {axis: "HP", value: upperHP},
+    {axis: "Atk", value: upperATK},
+    {axis: "Def", value: upperDEF},
+    {axis: "Speed", value: upperSPE},
+    {axis: "SpDef", value: upperSPD},
+    {axis: "SpAtk", value: upperSPA}
 ]
 
 var lower = [
-	{ axis: "HP", value: lowerHP },
-	{ axis: "Atk", value: lowerATK },
-	{ axis: "Def", value: lowerDEF },
-	{ axis: "Speed", value: lowerSPE },
-	{ axis: "SpDef", value: lowerSPD },
-	{ axis: "SpAtk", value: lowerSPA }
+    {axis: "HP", value: lowerHP},
+    {axis: "Atk", value: lowerATK},
+    {axis: "Def", value: lowerDEF},
+    {axis: "Speed", value: lowerSPE},
+    {axis: "SpDef", value: lowerSPD},
+    {axis: "SpAtk", value: lowerSPA}
 ]
 
 
@@ -52,39 +52,40 @@ var mkjson = (min0, max0, min1, max1, min2, max2, min3, max3, min4, max4, min5, 
 }
 
 var colors = {
-  Normal:"#a8a878",
-  Fighting:"#c03027",
-  Flying:"#a890f0",
-  Poison:"#a040a0",
-  Ground:"#e0c068",
-  Rock:"#b7a037",
-  Bug:"#a7b820",
-  Ghost:"#705898",
-  Steel:"#b8b7d0",
-  Fire:"#f08030",
-  Water:"#6990f0",
-  Grass:"#78c850",
-  Electric:"#f8cf30",
-  Psychic:"#f85888",
-  Ice:"#98d8d8",
-  Dragon:"#7137f8",
-  Dark:"#715848",
-  Fairy:"#ee99ac"
+    Normal: "#a8a878",
+    Fighting: "#c03027",
+    Flying: "#a890f0",
+    Poison: "#a040a0",
+    Ground: "#e0c068",
+    Rock: "#b7a037",
+    Bug: "#a7b820",
+    Ghost: "#705898",
+    Steel: "#b8b7d0",
+    Fire: "#f08030",
+    Water: "#6990f0",
+    Grass: "#78c850",
+    Electric: "#f8cf30",
+    Psychic: "#f85888",
+    Ice: "#98d8d8",
+    Dragon: "#7137f8",
+    Dark: "#715848",
+    Fairy: "#ee99ac"
 };
 
+var type_filter = "Reset";
 
 var get_pokemon = (json) => {
-    var promise = new Promise (function (resolve, reject) {
-        $.get( "/api_stats/", {"stats_json": JSON.stringify(json)} )
-            .done (function (response) {
+    var promise = new Promise(function (resolve, reject) {
+        $.get("/api_stats/", {"stats_json": JSON.stringify(json), "type": type_filter})
+            .done(function (response) {
                 resolve(response);
             })
-            .fail (function() {
+            .fail(function () {
                 reject();
             });
     });
 
-    promise.then( function(result) {
+    promise.then(function (result) {
         var results = JSON.parse(result)['hello'];
         var table = document.getElementById('results');
         table.innerHTML = ""; // clear
@@ -92,7 +93,7 @@ var get_pokemon = (json) => {
             console.log(results[i]);
             var div = document.createElement('div');
             var p = document.createElement('p');
-            p.style.color = colors[ results[i]['type'][0] ];
+            p.style.color = colors[results[i]['type'][0]];
             p.innerHTML = results[i]['name'];
             var id = document.createElement('small');
             id.innerHTML = results[i]['id'];
@@ -120,7 +121,7 @@ var get_pokemon = (json) => {
             div.appendChild(image);
             div.appendChild(p);
             div.appendChild(id);
-            div.appendChild( document.createElement('br') );
+            div.appendChild(document.createElement('br'));
             div.appendChild(text0);
             div.appendChild(text1);
             div.appendChild(text2);
@@ -134,6 +135,7 @@ var get_pokemon = (json) => {
     });
 }
 
+var my_json;
 
 var detectChange = () => {
     console.log("change in slider detected");
@@ -156,149 +158,177 @@ var detectChange = () => {
 }
 
 var RadarChart = {
-	draw: function (id, lower, upper) {
-		var cfg = {
-			radius: 5,
-			w: 500,
-			h: 500,
-			factor: 1,
-			factorLegend: .85,
-			levels: 6,
-			maxValue: 0.6,
-			radians: 2 * Math.PI,
-			opacityArea: 0.5,
-			ToRight: 5,
-			TranslateX: 30,
-			TranslateY: 30,
-			ExtraWidthX: 100,
-			ExtraWidthY: 100,
-			color: d3.scaleOrdinal(d3.schemeCategory10),
-			maxValue: 300
-		};
+    draw: function (id, lower, upper) {
+        var cfg = {
+            radius: 5,
+            w: 500,
+            h: 500,
+            factor: 1,
+            factorLegend: .85,
+            levels: 6,
+            maxValue: 0.6,
+            radians: 2 * Math.PI,
+            opacityArea: 0.5,
+            ToRight: 5,
+            TranslateX: 30,
+            TranslateY: 30,
+            ExtraWidthX: 100,
+            ExtraWidthY: 100,
+            color: d3.scaleOrdinal(d3.schemeCategory10),
+            maxValue: 300
+        };
 
-		var allAxis = (lower.map(function (i, j) { return i.axis }));
-		var total = allAxis.length;
-		var radius = cfg.factor * Math.min(cfg.w / 2, cfg.h / 2);
-		var Format = d3.format('');
-		d3.select(id).select("svg").remove();
+        var allAxis = (lower.map(function (i, j) {
+            return i.axis
+        }));
+        var total = allAxis.length;
+        var radius = cfg.factor * Math.min(cfg.w / 2, cfg.h / 2);
+        var Format = d3.format('');
+        d3.select(id).select("svg").remove();
 
-		var g = d3.select(id)
-			.append("svg")
-			.attr("width", cfg.w + cfg.ExtraWidthX)
-			.attr("height", cfg.h + cfg.ExtraWidthY)
-			.append("g")
-			.attr("transform", "translate(" + cfg.TranslateX + "," + cfg.TranslateY + ")");
-		;
+        var g = d3.select(id)
+            .append("svg")
+            .attr("width", cfg.w + cfg.ExtraWidthX)
+            .attr("height", cfg.h + cfg.ExtraWidthY)
+            .append("g")
+            .attr("transform", "translate(" + cfg.TranslateX + "," + cfg.TranslateY + ")");
+        ;
 
-		//Circular segments
-		for (var j = 0; j < cfg.levels; j++) {
-			var levelFactor = cfg.factor * radius * ((j + 1) / cfg.levels);
-			g.selectAll(".levels")
-				.data(allAxis)
-				.enter()
-				.append("svg:line")
-				.attr("x1", function (d, i) { return levelFactor * (1 - cfg.factor * Math.sin(i * cfg.radians / total)); })
-				.attr("y1", function (d, i) { return levelFactor * (1 - cfg.factor * Math.cos(i * cfg.radians / total)); })
-				.attr("x2", function (d, i) { return levelFactor * (1 - cfg.factor * Math.sin((i + 1) * cfg.radians / total)); })
-				.attr("y2", function (d, i) { return levelFactor * (1 - cfg.factor * Math.cos((i + 1) * cfg.radians / total)); })
-				.style("stroke", "grey")
-				.style("stroke-opacity", "0.75")
-				.style("stroke-width", "0.3px")
-				.attr("transform", "translate(" + (cfg.w / 2 - levelFactor) + ", " + (cfg.h / 2 - levelFactor) + ")");
-		}
+        //Circular segments
+        for (var j = 0; j < cfg.levels; j++) {
+            var levelFactor = cfg.factor * radius * ((j + 1) / cfg.levels);
+            g.selectAll(".levels")
+                .data(allAxis)
+                .enter()
+                .append("svg:line")
+                .attr("x1", function (d, i) {
+                    return levelFactor * (1 - cfg.factor * Math.sin(i * cfg.radians / total));
+                })
+                .attr("y1", function (d, i) {
+                    return levelFactor * (1 - cfg.factor * Math.cos(i * cfg.radians / total));
+                })
+                .attr("x2", function (d, i) {
+                    return levelFactor * (1 - cfg.factor * Math.sin((i + 1) * cfg.radians / total));
+                })
+                .attr("y2", function (d, i) {
+                    return levelFactor * (1 - cfg.factor * Math.cos((i + 1) * cfg.radians / total));
+                })
+                .style("stroke", "grey")
+                .style("stroke-opacity", "0.75")
+                .style("stroke-width", "0.3px")
+                .attr("transform", "translate(" + (cfg.w / 2 - levelFactor) + ", " + (cfg.h / 2 - levelFactor) + ")");
+        }
 
-		//Text indicating at what % each level is
-		for (var j = 0; j < cfg.levels; j++) {
-			var levelFactor = cfg.factor * radius * ((j + 1) / cfg.levels);
-			g.selectAll(".levels")
-				.data([1]) //dummy data
-				.enter()
-				.append("svg:text")
-				.attr("x", function (lower) { return levelFactor * (1 - cfg.factor * Math.sin(0)); })
-				.attr("y", function (lower) { return levelFactor * (1 - cfg.factor * Math.cos(0)); })
-				.style("font-family", "sans-serif")
-				.style("font-size", "10px")
-				.attr("transform", "translate(" + (cfg.w / 2 - levelFactor + cfg.ToRight) + ", " + (cfg.h / 2 - levelFactor) + ")")
-				.attr("fill", "#737373")
-				.text(Format((j + 1) * cfg.maxValue / cfg.levels));
-		}
+        //Text indicating at what % each level is
+        for (var j = 0; j < cfg.levels; j++) {
+            var levelFactor = cfg.factor * radius * ((j + 1) / cfg.levels);
+            g.selectAll(".levels")
+                .data([1]) //dummy data
+                .enter()
+                .append("svg:text")
+                .attr("x", function (lower) {
+                    return levelFactor * (1 - cfg.factor * Math.sin(0));
+                })
+                .attr("y", function (lower) {
+                    return levelFactor * (1 - cfg.factor * Math.cos(0));
+                })
+                .style("font-family", "sans-serif")
+                .style("font-size", "10px")
+                .attr("transform", "translate(" + (cfg.w / 2 - levelFactor + cfg.ToRight) + ", " + (cfg.h / 2 - levelFactor) + ")")
+                .attr("fill", "#737373")
+                .text(Format((j + 1) * cfg.maxValue / cfg.levels));
+        }
 
-		var axis = g.selectAll(".axis")
-			.data(allAxis)
-			.enter()
-			.append("g")
+        var axis = g.selectAll(".axis")
+            .data(allAxis)
+            .enter()
+            .append("g")
 
-		axis.append("line")
-			.attr("x1", cfg.w / 2)
-			.attr("y1", cfg.h / 2)
-			.attr("x2", function (lower, i) { return cfg.w / 2 * (1 - cfg.factor * Math.sin(i * cfg.radians / total)); })
-			.attr("y2", function (lower, i) { return cfg.h / 2 * (1 - cfg.factor * Math.cos(i * cfg.radians / total)); })
-			.style("stroke", "grey")
-			.style("stroke-width", "1px");
+        axis.append("line")
+            .attr("x1", cfg.w / 2)
+            .attr("y1", cfg.h / 2)
+            .attr("x2", function (lower, i) {
+                return cfg.w / 2 * (1 - cfg.factor * Math.sin(i * cfg.radians / total));
+            })
+            .attr("y2", function (lower, i) {
+                return cfg.h / 2 * (1 - cfg.factor * Math.cos(i * cfg.radians / total));
+            })
+            .style("stroke", "grey")
+            .style("stroke-width", "1px");
 
-		axis.append("text")
-			.text(function (lower) { return lower })
-			.style("font-family", "sans-serif")
-			.style("font-size", "11px")
-			.attr("text-anchor", "middle")
-			.attr("dy", "1.5em")
-			.attr("transform", function (lower, i) { return "translate(0, -10)" })
-			.attr("x", function (lower, i) { return cfg.w / 2 * (1 - cfg.factorLegend * Math.sin(i * cfg.radians / total)) - 60 * Math.sin(i * cfg.radians / total); })
-			.attr("y", function (lower, i) { return cfg.h / 2 * (1 - Math.cos(i * cfg.radians / total)) - 20 * Math.cos(i * cfg.radians / total); });
+        axis.append("text")
+            .text(function (lower) {
+                return lower
+            })
+            .style("font-family", "sans-serif")
+            .style("font-size", "11px")
+            .attr("text-anchor", "middle")
+            .attr("dy", "1.5em")
+            .attr("transform", function (lower, i) {
+                return "translate(0, -10)"
+            })
+            .attr("x", function (lower, i) {
+                return cfg.w / 2 * (1 - cfg.factorLegend * Math.sin(i * cfg.radians / total)) - 60 * Math.sin(i * cfg.radians / total);
+            })
+            .attr("y", function (lower, i) {
+                return cfg.h / 2 * (1 - Math.cos(i * cfg.radians / total)) - 20 * Math.cos(i * cfg.radians / total);
+            });
 
 
-		dataValues = [];
-		g.selectAll(".nodes")
-			.data(lower, function (j, i) {
-				dataValues.push([
-					cfg.w / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total)),
-					cfg.h / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total))
-				]);
-			});
-		g.selectAll(".area")
-			.data([dataValues])
-			.enter()
-			.append("polygon")
-			.style("stroke-width", "2px")
-			.style("stroke", cfg.color(0))
-			.attr("points", function (lower) {
-				var str = "";
-				for (var pti = 0; pti < lower.length; pti++) {
-					str = str + lower[pti][0] + "," + lower[pti][1] + " ";
-				}
-				return str;
-			})
-			.style("fill-opacity", 0.3)
+        dataValues = [];
+        g.selectAll(".nodes")
+            .data(lower, function (j, i) {
+                dataValues.push([
+                    cfg.w / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total)),
+                    cfg.h / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total))
+                ]);
+            });
+        g.selectAll(".area")
+            .data([dataValues])
+            .enter()
+            .append("polygon")
+            .style("stroke-width", "2px")
+            .style("stroke", cfg.color(0))
+            .attr("points", function (lower) {
+                var str = "";
+                for (var pti = 0; pti < lower.length; pti++) {
+                    str = str + lower[pti][0] + "," + lower[pti][1] + " ";
+                }
+                return str;
+            })
+            .style("fill-opacity", 0.3)
 
-		dataValues = [];
-		g.selectAll(".nodes")
-			.data(upper, function (j, i) {
-				dataValues.push([
-					cfg.w / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total)),
-					cfg.h / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total))
-				]);
-			});
-		g.selectAll(".area")
-			.data([dataValues])
-			.enter()
-			.append("polygon")
-			.style("stroke-width", "2px")
-			.style("stroke", cfg.color(0))
-			.attr("points", function (upper) {
-				var str = "";
-				for (var pti = 0; pti < upper.length; pti++) {
-					str = str + upper[pti][0] + "," + upper[pti][1] + " ";
-				}
-				return str;
-			})
-			.style("fill-opacity", cfg.opacityArea)
-			.style("fill", function (j, i) { return cfg.color(0) })
-	}
+        dataValues = [];
+        g.selectAll(".nodes")
+            .data(upper, function (j, i) {
+                dataValues.push([
+                    cfg.w / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.sin(i * cfg.radians / total)),
+                    cfg.h / 2 * (1 - (parseFloat(Math.max(j.value, 0)) / cfg.maxValue) * cfg.factor * Math.cos(i * cfg.radians / total))
+                ]);
+            });
+        g.selectAll(".area")
+            .data([dataValues])
+            .enter()
+            .append("polygon")
+            .style("stroke-width", "2px")
+            .style("stroke", cfg.color(0))
+            .attr("points", function (upper) {
+                var str = "";
+                for (var pti = 0; pti < upper.length; pti++) {
+                    str = str + upper[pti][0] + "," + upper[pti][1] + " ";
+                }
+                return str;
+            })
+            .style("fill-opacity", cfg.opacityArea)
+            .style("fill", function (j, i) {
+                return cfg.color(0)
+            })
+    }
 };
 
 
 function update() {
-	RadarChart.draw("#chart", lower, upper)
+    RadarChart.draw("#chart", lower, upper)
 };
 
 d3.select("button").on("click", update);
@@ -306,19 +336,19 @@ d3.select("button").on("click", update);
 RadarChart.draw("#chart", lower, upper);
 
 
-for (let i = 0; i < lower.length; i++){
+for (let i = 0; i < lower.length; i++) {
     ax = d3.select("#slider")
         .append('div')
-        .attr('id',lower[i]["axis"]);
+        .attr('id', lower[i]["axis"]);
     valdiv = ax.append('div')
-        .attr('id','value-'+lower[i]["axis"])
+        .attr('id', 'value-' + lower[i]["axis"])
     valdiv.append('h')
         .text(lower[i]["axis"])
     valdiv.append('p')
-        .attr('id','value-'+lower[i]["axis"]);
+        .attr('id', 'value-' + lower[i]["axis"]);
     ax.append('div')
-        .attr('class','col-sm')
-        .attr('id','slider-'+lower[i]["axis"]);
+        .attr('class', 'col-sm')
+        .attr('id', 'slider-' + lower[i]["axis"]);
 
     var sliderRange = d3
         .sliderBottom()
@@ -330,29 +360,42 @@ for (let i = 0; i < lower.length; i++){
         .default([100, 200])
         .fill('#2196f3')
         .on('onchange', val => {
-			d3.select('p#value-'+lower[i]["axis"]).text(val.map(d3.format('d')).join('-'));
-			lower[i]["value"] = val[0]
-			upper[i]["value"] = val[1]
-		    update()
+            d3.select('p#value-' + lower[i]["axis"]).text(val.map(d3.format('d')).join('-'));
+            lower[i]["value"] = val[0]
+            upper[i]["value"] = val[1]
+            update()
             detectChange();
         });
 
     var gRange = d3
-        .select('div#slider-'+lower[i]["axis"])
+        .select('div#slider-' + lower[i]["axis"])
         .append('svg')
         .attr('width', 400)
         .attr('height', 100)
-        .attr('x',50)
-        .attr('y',50)
+        .attr('x', 50)
+        .attr('y', 50)
         .append('g')
         .attr('transform', 'translate(30,30)');
 
     gRange.call(sliderRange);
 
-    d3.select('p#value-'+lower[i]["axis"]).text(
+    d3.select('p#value-' + lower[i]["axis"]).text(
         sliderRange
             .value()
             .map(d3.format('d'))
             .join('-')
     );
-};
+}
+;
+
+var type_spans = document.getElementsByClassName("type_span");
+for (var i = 0; i < type_spans.length; i++) {
+    type_spans[i].addEventListener('click', function () {
+        var span_type = this.innerText;
+        type_filter = span_type;
+        console.log(span_type);
+        if (typeof my_json != "undefined") {
+            get_pokemon(my_json);
+        }
+    });
+}
