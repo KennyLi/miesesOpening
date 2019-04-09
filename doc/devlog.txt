@@ -146,3 +146,10 @@ raymondW -- 2019-04-08 14:50
 + add legend to slider results and color code names by type
 + add HP, attack, defense, speed, special attack, special defense, Pokemon ID to slider results
 ==============================================================
+
+jasonT -- 2019-04-09 0:51
+--------------------------------------------------------------
++ click type to filter
++ changed def. range on sliders
++ show list on page load
+==============================================================
