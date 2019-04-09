@@ -1,7 +1,7 @@
 var upperHP, upperATK, upperDEF, upperSPE, upperSPD, upperSPA;
 var lowerHP, lowerATK, lowerDEF, lowerSPE, lowerSPD, lowerSPA;
 upperHP = 200, upperATK = 200, upperDEF = 200, upperSPE = 200, upperSPD = 200, upperSPA = 200;
-lowerHP = 100, lowerATK = 100, lowerDEF = 100, lowerSPE = 100, lowerSPD = 100, lowerSPA = 100;
+lowerHP = 50, lowerATK = 50, lowerDEF = 50, lowerSPE = 50, lowerSPD = 50, lowerSPA = 50;
 var upper = [
     {axis: "HP", value: upperHP},
     {axis: "Atk", value: upperATK},
@@ -357,7 +357,7 @@ for (let i = 0; i < lower.length; i++) {
         .width(300)
         .tickFormat(d3.format('d'))
         .ticks(5)
-        .default([100, 200])
+        .default([50, 200])
         .fill('#2196f3')
         .on('onchange', val => {
             d3.select('p#value-' + lower[i]["axis"]).text(val.map(d3.format('d')).join('-'));
@@ -388,6 +388,7 @@ for (let i = 0; i < lower.length; i++) {
 }
 ;
 
+
 var type_spans = document.getElementsByClassName("type_span");
 for (var i = 0; i < type_spans.length; i++) {
     type_spans[i].addEventListener('click', function () {
@@ -399,3 +400,7 @@ for (var i = 0; i < type_spans.length; i++) {
         }
     });
 }
+
+my_json = mkjson(50, 200, 50, 200,50, 200,50, 200,50, 200,50, 200);
+
+get_pokemon(my_json);
