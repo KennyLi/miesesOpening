@@ -90,7 +90,7 @@ var get_pokemon = (json) => {
         var table = document.getElementById('results');
         table.innerHTML = ""; // clear
         for (var i = 0; i < results.length; i++) {
-            console.log(results[i]);
+            // console.log(results[i]);
             var div = document.createElement('div');
             var p = document.createElement('p');
             p.style.color = colors[results[i]['type'][0]];
