@@ -10,6 +10,9 @@ provides name of pokemon, pokedex number, type, and base stats
 [Pokemon Go](https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json)
 provides name of pokemon, pokedex number, height, weight, weaknesses, evolutions
 
+[PokeAPI](https://pokeapi.co/)
+Used to fetch pokemon pictures, weights, height
+
 We plan to analyze the base stats and type of all pokemon released as of right now to see how the game is balanced. In addition, we can make predictions about the new pokemon games (Pokemon Sword & Pokemon Shield) being released this year based on patterns and trends from the previous generations.
 
 ## How To Make This Data Come Alive
