@@ -53,19 +53,25 @@ def parsefile():
 #
 def setup(ip):
     server_addr = ip
+    print("hello!")
     connection = pymongo.MongoClient(server_addr)
+    connection.server_info()
+#print(connection.server_info())
+    print("hello 2")
     db = connection.test
-    connection = db.pokedex_unparsed
+#    db.server_info()
+    print("hello 3")
+    #connection = db.pokedex_unparsed
     #this only needs be run once!
     if not os.path.isfile("data_stuff/pokedex_parsed.json"):
         parsefile()
     else:
-        collection = db.miesesgang
-        collection.drop()
+        collection = db["miesesgang"]
+        #collection.drop()
         f=open("data_stuff/pokedex_parsed.json","r")
         json_data = f.read()
         f.close()
         data = json.loads(json_data)
         collection.insert_many(data)
 
-setup("jayy.mooo.com")
+setup("jasontung.me")

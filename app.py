@@ -13,7 +13,7 @@ from bson import ObjectId
 from bson.json_util import *
 
 
-ip = "jayy.mooo.com"
+ip = "jasontung.me"
 connection = pymongo.MongoClient(ip)
 connection.server_info()
 db = connection.test
